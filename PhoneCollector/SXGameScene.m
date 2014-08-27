@@ -7,6 +7,7 @@
 //
 
 #import "SXGameScene.h"
+#import "SXGamePauseView.h"
 
 @interface SXGameScene()
 
@@ -16,13 +17,15 @@
 
 @property (strong, nonatomic) SKShapeNode* surfaceNode;
 
-@property (assign) int tickCount;
+@property (assign,nonatomic) int tickCount;
 
-@property (assign) CFTimeInterval timeInterval;
+@property (assign,nonatomic) CFTimeInterval timeInterval;
 
 @property (assign) CFTimeInterval updateInterval;
 
 @property (assign) float animationTime;
+//Game Control View
+@property (strong,nonatomic)SKShapeNode* pauseBtnNode;
 
 @end
 
@@ -40,6 +43,7 @@
         _surfaceNode.antialiased = NO;
         _surfaceNode.lineWidth = 1.0;
         _surfaceNode.strokeColor = [SKColor orangeColor];
+        _surfaceNode.name = @"surface";
         [self addChild:_surfaceNode];
         
         _animationTime = 1;
@@ -55,6 +59,33 @@
     _swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeDown:)];
     _swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:_swipeDown];
+    [self initGameControlView];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch* touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode* node = [self nodeAtPoint:location];
+    NSLog(@"%@",node);
+    if ([node.name isEqualToString:@"pauseNode"]) {
+        self.scene.view.paused = YES;
+        //present pause view
+        SXGamePauseView* pauseView = [SXGamePauseView new];
+        pauseView.position = CGPointMake(self.size.width/2, self.size.height/2);
+        [_surfaceNode addChild:pauseView];
+        [pauseView initUI];
+    }
+}
+
+- (void)initGameControlView
+{
+    _pauseBtnNode= [SKShapeNode node];
+    _pauseBtnNode.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(20, 20, 20, 20) cornerRadius:4].CGPath;
+    _pauseBtnNode.strokeColor = [SKColor redColor];
+    _pauseBtnNode.fillColor = [SKColor blueColor];
+    _pauseBtnNode.name = @"pauseNode";
+    [_surfaceNode addChild:_pauseBtnNode];
 }
 
 - (void)willMoveFromView:(SKView *)view {
@@ -105,7 +136,7 @@
         _tickCount++;
 //        _updateInterval = 0.1f + 0.3f/log2(_tickCount+2);
 //        _animationTime = 0.6f + 0.4f/log2(_tickCount+2);
-        NSLog(@"_updateInterval:%f, _animationTime:%f", _updateInterval, _animationTime);
+        //NSLog(@"_updateInterval:%f, _animationTime:%f", _updateInterval, _animationTime);
         SKSpriteNode* iphoneNode = [SKSpriteNode spriteNodeWithImageNamed:@"iphone"];
         [iphoneNode setScale:0.5f];
         iphoneNode.position = CGPointMake(self.size.width + 32, self.size.height/2);

@@ -60,7 +60,6 @@
 
 - (void)didMoveToView:(SKView *)view
 {
-    //[self initUI];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
