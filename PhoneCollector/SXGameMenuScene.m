@@ -16,6 +16,8 @@
 
 @property (strong,nonatomic)SKTransition* sceneTransition;
 
+@property (weak, nonatomic) SKLabelNode* selectNode;
+
 @property (strong,nonatomic)UIButton* startBtn;
 
 @property (strong,nonatomic)UIButton* gameCenterBtn;
@@ -29,38 +31,70 @@
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
+        
         self.backgroundColor = [UIColor orangeColor];
+        
+        SKLabelNode* startLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        [startLabel setText:@"Start"];
+        [startLabel setFontSize:40];
+        startLabel.position = CGPointMake(size.width/2, size.height/2);
+        [self addChild:startLabel];
+        [startLabel setName:@"start"];
+        
+        SKLabelNode* settingLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        [settingLabel setFontSize:20];
+        [settingLabel setText:@"Settings"];
+        settingLabel.position = CGPointMake(size.width/4, settingLabel.frame.size.height + 20);
+        [self addChild:settingLabel];
+        [settingLabel setName:@"setting"];
+        
+        SKLabelNode* leadboardLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        [leadboardLabel setText:@"Leadboard"];
+        [leadboardLabel setFontSize:20];
+        leadboardLabel.position = CGPointMake(3*size.width/4, leadboardLabel.frame.size.height + 20);
+        [self addChild:leadboardLabel];
+        [leadboardLabel setName:@"leadboard"];
     }
     return self;
 }
 
 - (void)didMoveToView:(SKView *)view
 {
-    [self initUI];
+    //[self initUI];
 }
 
--(void)initUI
-{
-    CGRect f = self.frame;
-    _startBtn = [[UIButton alloc]initWithFrame:CGRectMake(f.size.width / 2 - 50 , f.size.height / 2 - 30, 100, 60)];
-    [_startBtn setTitle:@"START" forState:UIControlStateNormal];
-    _startBtn.backgroundColor = [UIColor blueColor];
-    [_startBtn addTarget:self action:@selector(transferToMainGameScene:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_startBtn];
-    
-    _gameCenterBtn = [[UIButton alloc]initWithFrame:CGRectMake(f.size.width / 3 - 40 , f.size.height - 20 , 80, 20)];
-    [_gameCenterBtn setTitle:@"Game Center" forState:UIControlStateNormal];
-    _gameCenterBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    _gameCenterBtn.backgroundColor = [UIColor blueColor];
-    [_gameCenterBtn addTarget:self action:@selector(handleGameCenterTap:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_gameCenterBtn];
-    
-    _settingBtn = [[UIButton alloc]initWithFrame:CGRectMake(f.size.width / 3 * 2 - 40 , f.size.height - 20 , 80, 20)];
-    [_settingBtn setTitle:@"Setting" forState:UIControlStateNormal];
-    _settingBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    _settingBtn.backgroundColor = [UIColor blueColor];
-    [_settingBtn addTarget:self action:@selector(handleSetting:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_settingBtn];
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint pt = [[touches anyObject] locationInNode:self];
+    [[self children] enumerateObjectsUsingBlock:^(SKLabelNode* labelNode, NSUInteger idx, BOOL *stop) {
+        if ([labelNode isKindOfClass:[SKLabelNode class]] && [labelNode containsPoint:pt]) {
+            [labelNode setFontColor:[SKColor redColor]];
+            [labelNode setScale:1.2f];
+            _selectNode = labelNode;
+            *stop = YES;
+        }
+    }];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    [_selectNode setFontColor:[SKColor whiteColor]];
+    [_selectNode setScale:1.0f];
+    _selectNode = nil;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [_selectNode setFontColor:[SKColor whiteColor]];
+    [_selectNode setScale:1.0f];
+    CGPoint pt = [[touches anyObject] locationInNode:self];
+    if (![_selectNode containsPoint:pt]) {
+        return;
+    }
+    if ([_selectNode.name isEqualToString:@"start"]) {
+        [self transferToMainGameScene:_selectNode];
+    } else if ([_selectNode.name isEqualToString:@"setting"]) {
+        [self handleSetting:_selectNode];
+    } else if ([_selectNode.name isEqualToString:@"leadboard"]) {
+        [self handleGameCenterTap:self];
+    }
 }
 
 - (void)handleSetting:(id)sender
@@ -81,15 +115,6 @@
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     [self.scene.view presentScene:scene transition:_sceneTransition];
-    
-    [self removeUIKitView];
-}
-
-- (void)removeUIKitView
-{
-    [_startBtn removeFromSuperview];
-    [_gameCenterBtn removeFromSuperview];
-    [_settingBtn removeFromSuperview];
 }
 
 @end

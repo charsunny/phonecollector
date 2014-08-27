@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CF7A4D4F-ADDE-49E1-9484-8B6CF06C746C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PhoneCollector</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D5DD14CE-A25F-48B5-908D-FC17D32EE338</key>
+		<string>https://github.com/charsunny/phonecollector.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PhoneCollector.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D5DD14CE-A25F-48B5-908D-FC17D32EE338</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/charsunny/phonecollector.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D5DD14CE-A25F-48B5-908D-FC17D32EE338</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D5DD14CE-A25F-48B5-908D-FC17D32EE338</string>
+			<key>IDESourceControlWCCName</key>
+			<string>phonecollector</string>
+		</dict>
+	</array>
+</dict>
+</plist>

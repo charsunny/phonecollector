@@ -20,6 +20,10 @@
 
 @property (assign) CFTimeInterval timeInterval;
 
+@property (assign) CFTimeInterval updateInterval;
+
+@property (assign) float animationTime;
+
 @end
 
 @implementation SXGameScene
@@ -37,6 +41,9 @@
         _surfaceNode.lineWidth = 1.0;
         _surfaceNode.strokeColor = [SKColor orangeColor];
         [self addChild:_surfaceNode];
+        
+        _animationTime = 1;
+        _updateInterval = 1;
     }
     return self;
 }
@@ -89,14 +96,21 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    if (currentTime - _timeInterval > .5) {
+    if (_timeInterval == 0) {
+        _timeInterval = currentTime;
+        return;
+    }
+    if (currentTime - _timeInterval > _updateInterval) {
         _timeInterval = currentTime;
         _tickCount++;
+//        _updateInterval = 0.1f + 0.3f/log2(_tickCount+2);
+//        _animationTime = 0.6f + 0.4f/log2(_tickCount+2);
+        NSLog(@"_updateInterval:%f, _animationTime:%f", _updateInterval, _animationTime);
         SKSpriteNode* iphoneNode = [SKSpriteNode spriteNodeWithImageNamed:@"iphone"];
         [iphoneNode setScale:0.5f];
         iphoneNode.position = CGPointMake(self.size.width + 32, self.size.height/2);
         [self addChild:iphoneNode];
-        [iphoneNode runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:2] completion:^{
+        [iphoneNode runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:_animationTime] completion:^{
             [iphoneNode removeFromParent];
         }];
     }
