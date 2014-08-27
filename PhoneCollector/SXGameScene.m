@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) UISwipeGestureRecognizer* swipeDown;
 
-@property (strong, nonatomic) SKShapeNode* trashNode;
+@property (strong, nonatomic) SKShapeNode* surfaceNode;
 
 @property (assign) int tickCount;
 
@@ -29,9 +29,14 @@
         /* Setup your scene here */
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        _trashNode = [SKShapeNode new];
-        _trashNode.position = CGPointMake(self.size.width/2, self.size.height/2);
-        [self addChild:_trashNode];
+        _surfaceNode = [SKShapeNode node];
+        CGPathRef path = CGPathCreateWithRect(self.frame, nil);
+        _surfaceNode.path = path;
+        CGPathRelease(path);
+        _surfaceNode.antialiased = NO;
+        _surfaceNode.lineWidth = 1.0;
+        _surfaceNode.strokeColor = [SKColor orangeColor];
+        [self addChild:_surfaceNode];
     }
     return self;
 }
@@ -51,23 +56,34 @@
 }
 
 - (void)onSwipeUp:(UISwipeGestureRecognizer*)recognizer {
-    SKNode* node = [[self children] firstObject];
+    if ([self children].count <= 1) {
+        return;
+    }
+    SKNode* node = [self children][1];
     [node removeAllActions];
-    //[node removeFromParent];
-    //[_trashNode addChild:node];
-    [node runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:0.3f]] completion:nil];
-    [node runAction:[SKAction moveTo:CGPointMake(self.size.width/2, self.size.height - 100) duration:0.3f] completion:^{
-        [node removeFromParent];
+    SKNode* moveNode = [node copy];
+    [_surfaceNode addChild:moveNode];
+    [node removeFromParent];
+    [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:0.2f]] completion:nil];
+    [moveNode runAction:[SKAction moveTo:CGPointMake(self.size.width/2, self.size.height - 100) duration:0.3f] completion:^{
+        [moveNode removeFromParent];
     }];
     
 }
 
 - (void)onSwipeDown:(UISwipeGestureRecognizer*)recognizer {
-    SKNode* node = [[self children] firstObject];
+    if ([self children].count <= 1) {
+        return;
+    }
+    SKNode* node = [self children][1];
     [node removeAllActions];
-    [node runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:0.3f]] completion:nil];
-    [node runAction:[SKAction moveTo:CGPointMake(self.size.width/2, 100) duration:0.3f] completion:^{
-        [node removeFromParent];
+    SKNode* moveNode = [node copy];
+    [_surfaceNode addChild:moveNode];
+    [node removeFromParent];
+    
+    [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:0.2f]] completion:nil];
+    [moveNode runAction:[SKAction moveTo:CGPointMake(self.size.width/2, 100) duration:0.3f] completion:^{
+        [moveNode removeFromParent];
     }];
 }
 
