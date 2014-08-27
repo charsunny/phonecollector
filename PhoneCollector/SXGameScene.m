@@ -71,7 +71,12 @@
     SKNode* moveNode = [node copy];
     [_surfaceNode addChild:moveNode];
     [node removeFromParent];
-    [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:0.2f]] completion:nil];
+//    UIBezierPath*    aPath = [UIBezierPath bezierPath];
+//    [aPath moveToPoint:CGPointMake(self.size.width/2, self.size.height - 100)];
+//    [aPath closePath];
+//    CGPathRef bezierPath = aPath.CGPath;
+//    [moveNode runAction:[SKAction followPath:bezierPath duration:0.3]];
+    [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:1.0f]] completion:nil];
     [moveNode runAction:[SKAction moveTo:CGPointMake(self.size.width/2, self.size.height - 100) duration:0.3f] completion:^{
         [moveNode removeFromParent];
     }];
@@ -88,7 +93,7 @@
     [_surfaceNode addChild:moveNode];
     [node removeFromParent];
     
-    [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:0.2f]] completion:nil];
+    [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:1.0f]] completion:nil];
     [moveNode runAction:[SKAction moveTo:CGPointMake(self.size.width/2, 100) duration:0.3f] completion:^{
         [moveNode removeFromParent];
     }];
