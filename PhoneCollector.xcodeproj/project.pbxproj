@@ -17,24 +17,9 @@
 		509F585419ADAD92001C0D8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 509F585219ADAD92001C0D8F /* Main.storyboard */; };
 		509F585719ADAD92001C0D8F /* SXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F585619ADAD92001C0D8F /* SXViewController.m */; };
 		509F585A19ADAD92001C0D8F /* SXGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F585919ADAD92001C0D8F /* SXGameScene.m */; };
-		509F585C19ADAD92001C0D8F /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 509F585B19ADAD92001C0D8F /* Spaceship.png */; };
 		509F585E19ADAD92001C0D8F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 509F585D19ADAD92001C0D8F /* Images.xcassets */; };
-		509F586519ADAD92001C0D8F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F586419ADAD92001C0D8F /* XCTest.framework */; };
-		509F586619ADAD92001C0D8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F583E19ADAD92001C0D8F /* Foundation.framework */; };
-		509F586719ADAD92001C0D8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F584219ADAD92001C0D8F /* UIKit.framework */; };
-		509F586F19ADAD92001C0D8F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 509F586D19ADAD92001C0D8F /* InfoPlist.strings */; };
-		509F587119ADAD92001C0D8F /* PhoneCollectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F587019ADAD92001C0D8F /* PhoneCollectorTests.m */; };
+		9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		509F586819ADAD92001C0D8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 509F583319ADAD92001C0D8F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 509F583A19ADAD92001C0D8F;
-			remoteInfo = PhoneCollector;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		509F583B19ADAD92001C0D8F /* PhoneCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,13 +38,13 @@
 		509F585619ADAD92001C0D8F /* SXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXViewController.m; sourceTree = "<group>"; };
 		509F585819ADAD92001C0D8F /* SXGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGameScene.h; sourceTree = "<group>"; };
 		509F585919ADAD92001C0D8F /* SXGameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGameScene.m; sourceTree = "<group>"; };
-		509F585B19ADAD92001C0D8F /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		509F585D19ADAD92001C0D8F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		509F586319ADAD92001C0D8F /* PhoneCollectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhoneCollectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		509F586419ADAD92001C0D8F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		509F586C19ADAD92001C0D8F /* PhoneCollectorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhoneCollectorTests-Info.plist"; sourceTree = "<group>"; };
 		509F586E19ADAD92001C0D8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		509F587019ADAD92001C0D8F /* PhoneCollectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhoneCollectorTests.m; sourceTree = "<group>"; };
+		9D3A42BE19ADB2BA0024FB5D /* SXGameMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameMenuScene.h; sourceTree = "<group>"; };
+		9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameMenuScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,16 +56,6 @@
 				509F584319ADAD92001C0D8F /* UIKit.framework in Frameworks */,
 				509F584519ADAD92001C0D8F /* SpriteKit.framework in Frameworks */,
 				509F583F19ADAD92001C0D8F /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		509F586019ADAD92001C0D8F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				509F586519ADAD92001C0D8F /* XCTest.framework in Frameworks */,
-				509F586719ADAD92001C0D8F /* UIKit.framework in Frameworks */,
-				509F586619ADAD92001C0D8F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				509F583B19ADAD92001C0D8F /* PhoneCollector.app */,
-				509F586319ADAD92001C0D8F /* PhoneCollectorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,7 +102,8 @@
 				509F585619ADAD92001C0D8F /* SXViewController.m */,
 				509F585819ADAD92001C0D8F /* SXGameScene.h */,
 				509F585919ADAD92001C0D8F /* SXGameScene.m */,
-				509F585B19ADAD92001C0D8F /* Spaceship.png */,
+				9D3A42BE19ADB2BA0024FB5D /* SXGameMenuScene.h */,
+				9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */,
 				509F585D19ADAD92001C0D8F /* Images.xcassets */,
 				509F584719ADAD92001C0D8F /* Supporting Files */,
 			);
@@ -184,24 +159,6 @@
 			productReference = 509F583B19ADAD92001C0D8F /* PhoneCollector.app */;
 			productType = "com.apple.product-type.application";
 		};
-		509F586219ADAD92001C0D8F /* PhoneCollectorTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 509F587719ADAD92001C0D8F /* Build configuration list for PBXNativeTarget "PhoneCollectorTests" */;
-			buildPhases = (
-				509F585F19ADAD92001C0D8F /* Sources */,
-				509F586019ADAD92001C0D8F /* Frameworks */,
-				509F586119ADAD92001C0D8F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				509F586919ADAD92001C0D8F /* PBXTargetDependency */,
-			);
-			name = PhoneCollectorTests;
-			productName = PhoneCollectorTests;
-			productReference = 509F586319ADAD92001C0D8F /* PhoneCollectorTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -211,11 +168,6 @@
 				CLASSPREFIX = SX;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Sun Xi";
-				TargetAttributes = {
-					509F586219ADAD92001C0D8F = {
-						TestTargetID = 509F583A19ADAD92001C0D8F;
-					};
-				};
 			};
 			buildConfigurationList = 509F583619ADAD92001C0D8F /* Build configuration list for PBXProject "PhoneCollector" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -231,7 +183,6 @@
 			projectRoot = "";
 			targets = (
 				509F583A19ADAD92001C0D8F /* PhoneCollector */,
-				509F586219ADAD92001C0D8F /* PhoneCollectorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -243,16 +194,7 @@
 			files = (
 				509F584B19ADAD92001C0D8F /* InfoPlist.strings in Resources */,
 				509F585E19ADAD92001C0D8F /* Images.xcassets in Resources */,
-				509F585C19ADAD92001C0D8F /* Spaceship.png in Resources */,
 				509F585419ADAD92001C0D8F /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		509F586119ADAD92001C0D8F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				509F586F19ADAD92001C0D8F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,27 +208,12 @@
 				509F585719ADAD92001C0D8F /* SXViewController.m in Sources */,
 				509F585A19ADAD92001C0D8F /* SXGameScene.m in Sources */,
 				509F584D19ADAD92001C0D8F /* main.m in Sources */,
+				9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */,
 				509F585119ADAD92001C0D8F /* SXAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		509F585F19ADAD92001C0D8F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				509F587119ADAD92001C0D8F /* PhoneCollectorTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		509F586919ADAD92001C0D8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 509F583A19ADAD92001C0D8F /* PhoneCollector */;
-			targetProxy = 509F586819ADAD92001C0D8F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		509F584919ADAD92001C0D8F /* InfoPlist.strings */ = {
@@ -391,6 +318,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoneCollector/PhoneCollector-Prefix.pch";
 				INFOPLIST_FILE = "PhoneCollector/PhoneCollector-Info.plist";
@@ -405,52 +333,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoneCollector/PhoneCollector-Prefix.pch";
 				INFOPLIST_FILE = "PhoneCollector/PhoneCollector-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		509F587819ADAD92001C0D8F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhoneCollector.app/PhoneCollector";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PhoneCollector/PhoneCollector-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "PhoneCollectorTests/PhoneCollectorTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		509F587919ADAD92001C0D8F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/PhoneCollector.app/PhoneCollector";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PhoneCollector/PhoneCollector-Prefix.pch";
-				INFOPLIST_FILE = "PhoneCollectorTests/PhoneCollectorTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -471,15 +360,6 @@
 			buildConfigurations = (
 				509F587519ADAD92001C0D8F /* Debug */,
 				509F587619ADAD92001C0D8F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		509F587719ADAD92001C0D8F /* Build configuration list for PBXNativeTarget "PhoneCollectorTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				509F587819ADAD92001C0D8F /* Debug */,
-				509F587919ADAD92001C0D8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
