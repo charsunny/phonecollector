@@ -26,7 +26,8 @@
 - (instancetype)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
-        _resultTitleNode = [SKLabelNode labelNodeWithText:@"Score"];
+        _resultTitleNode = [SKLabelNode node];
+        [_resultTitleNode setText:@"Score"];
         _resultTitleNode.fontSize = 40;
         _resultTitleNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMinY(self.frame)+45);
         [self addChild:_resultTitleNode];

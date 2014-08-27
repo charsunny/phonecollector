@@ -7,7 +7,7 @@
 //
 
 #import "SXGameScene.h"
-#import "SXGamePauseView.h"
+//#import "SXGamePauseView.h"
 
 @interface SXGameScene()
 
@@ -21,9 +21,11 @@
 
 @property (assign,nonatomic) CFTimeInterval timeInterval;
 
-@property (assign) CFTimeInterval updateInterval;
+@property (assign, nonatomic) CFTimeInterval updateInterval;
 
-@property (assign) float animationTime;
+@property (assign, nonatomic) float animationTime;
+
+@property (assign, nonatomic) int score;
 //Game Control View
 @property (strong,nonatomic)SKShapeNode* pauseBtnNode;
 
@@ -34,6 +36,10 @@
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        
+        _animationTime = 1.0;
+        _updateInterval = 0.5;
+        _score = 0;
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         _surfaceNode = [SKShapeNode node];
@@ -46,8 +52,13 @@
         _surfaceNode.name = @"surface";
         [self addChild:_surfaceNode];
         
-        _animationTime = 1;
-        _updateInterval = 1;
+        SKLabelNode* scoreLabel = [SKLabelNode node];
+        [scoreLabel setText:[NSString stringWithFormat:@"%d", _score]];
+        [scoreLabel setName:@"score"];
+        [scoreLabel setFontName:@"Chalkduster"];
+        [scoreLabel setFontSize:40];
+        [scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height - 60)];
+        [_surfaceNode addChild:scoreLabel];
     }
     return self;
 }
@@ -67,14 +78,9 @@
     UITouch* touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode* node = [self nodeAtPoint:location];
-    NSLog(@"%@",node);
     if ([node.name isEqualToString:@"pauseNode"]) {
-        self.scene.view.paused = YES;
+        self.scene.view.paused = !self.scene.view.paused;
         //present pause view
-        SXGamePauseView* pauseView = [SXGamePauseView new];
-        pauseView.position = CGPointMake(self.size.width/2, self.size.height/2);
-        [_surfaceNode addChild:pauseView];
-        [pauseView initUI];
     }
 }
 
@@ -110,6 +116,13 @@
     [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:1.0f]] completion:nil];
     [moveNode runAction:[SKAction moveTo:CGPointMake(self.size.width/2, self.size.height - 100) duration:0.3f] completion:^{
         [moveNode removeFromParent];
+        if ([moveNode.userData[@"type"] intValue] == 0) {
+            _score++;
+            SKLabelNode* label = (SKLabelNode*)[_surfaceNode childNodeWithName:@"score"];
+            [label setText:[NSString stringWithFormat:@"%d", _score]];
+        } else {
+            [self showGameResult];
+        }
     }];
     
 }
@@ -127,6 +140,9 @@
     [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:1.0f]] completion:nil];
     [moveNode runAction:[SKAction moveTo:CGPointMake(self.size.width/2, 100) duration:0.3f] completion:^{
         [moveNode removeFromParent];
+        if ([moveNode.userData[@"type"] intValue] == 0) {
+            [self showGameResult];
+        }
     }];
 }
 
@@ -139,17 +155,41 @@
     if (currentTime - _timeInterval > _updateInterval) {
         _timeInterval = currentTime;
         _tickCount++;
-//        _updateInterval = 0.1f + 0.3f/log2(_tickCount+2);
-//        _animationTime = 0.6f + 0.4f/log2(_tickCount+2);
-        //NSLog(@"_updateInterval:%f, _animationTime:%f", _updateInterval, _animationTime);
-        SKSpriteNode* iphoneNode = [SKSpriteNode spriteNodeWithImageNamed:@"iphone"];
-        [iphoneNode setScale:0.5f];
-        iphoneNode.position = CGPointMake(self.size.width + 32, self.size.height/2);
-        [self addChild:iphoneNode];
-        [iphoneNode runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:_animationTime] completion:^{
-            [iphoneNode removeFromParent];
+        if (_tickCount > 40) {
+            _tickCount = 40;
+        }
+        _updateInterval = 0.5 - 0.05*(_tickCount/10);
+        SKSpriteNode* phoneNode = [self createPhoneNode:rand()%2];
+        [phoneNode setScale:0.5f];
+        phoneNode.position = CGPointMake(self.size.width + 32, self.size.height/2);
+        [self addChild:phoneNode];
+        [phoneNode runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:_animationTime] completion:^{
+            [phoneNode removeFromParent];
+            [self showGameResult];
         }];
     }
+}
+
+- (SKSpriteNode*)createPhoneNode:(int)phonetype {
+    NSString* phoneName = nil;
+    switch (phonetype) {
+        case 0:
+            phoneName = @"iphone";
+            break;
+        case 1:
+            phoneName = @"android";
+            break;
+        default:
+            phoneName = @"iphone";
+            break;
+    }
+    SKSpriteNode* spriteNode =  [SKSpriteNode spriteNodeWithImageNamed:phoneName];
+    spriteNode.userData = [NSMutableDictionary dictionaryWithDictionary:@{@"type":@(phonetype)}];
+    return spriteNode;
+}
+
+- (void)showGameResult {
+    NSLog(@"game over");
 }
 
 @end
