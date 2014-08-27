@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500E1ADF19ADD082000541CC /* buttonclick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 500E1ADE19ADD082000541CC /* buttonclick.mp3 */; };
 		509F583F19ADAD92001C0D8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F583E19ADAD92001C0D8F /* Foundation.framework */; };
 		509F584119ADAD92001C0D8F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F584019ADAD92001C0D8F /* CoreGraphics.framework */; };
 		509F584319ADAD92001C0D8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F584219ADAD92001C0D8F /* UIKit.framework */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		500E1ADE19ADD082000541CC /* buttonclick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonclick.mp3; sourceTree = "<group>"; };
 		509F583B19ADAD92001C0D8F /* PhoneCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509F583E19ADAD92001C0D8F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		509F584019ADAD92001C0D8F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +124,7 @@
 		509F584719ADAD92001C0D8F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				500E1ADE19ADD082000541CC /* buttonclick.mp3 */,
 				509F584819ADAD92001C0D8F /* PhoneCollector-Info.plist */,
 				509F584919ADAD92001C0D8F /* InfoPlist.strings */,
 				509F584C19ADAD92001C0D8F /* main.m */,
@@ -213,6 +216,7 @@
 				509F584B19ADAD92001C0D8F /* InfoPlist.strings in Resources */,
 				509F585E19ADAD92001C0D8F /* Images.xcassets in Resources */,
 				509F585419ADAD92001C0D8F /* Main.storyboard in Resources */,
+				500E1ADF19ADD082000541CC /* buttonclick.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

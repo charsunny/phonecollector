@@ -64,14 +64,13 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [[touches anyObject] locationInNode:self];
-    [[self children] enumerateObjectsUsingBlock:^(SKLabelNode* labelNode, NSUInteger idx, BOOL *stop) {
-        if ([labelNode isKindOfClass:[SKLabelNode class]] && [labelNode containsPoint:pt]) {
-            [labelNode setFontColor:[SKColor redColor]];
-            [labelNode setScale:1.2f];
-            _selectNode = labelNode;
-            *stop = YES;
-        }
-    }];
+    SKLabelNode* labelNode = (SKLabelNode*)[self nodeAtPoint:pt];
+    if ([labelNode isKindOfClass:[SKLabelNode class]] && [labelNode containsPoint:pt]) {
+        [labelNode runAction:[SKAction playSoundFileNamed:@"buttonclick.mp3" waitForCompletion:NO] completion:nil];
+        [labelNode setFontColor:[SKColor redColor]];
+        [labelNode setScale:1.2f];
+        _selectNode = labelNode;
+    }
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
