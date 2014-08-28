@@ -9,6 +9,7 @@
 #import "SXGameResultScene.h"
 #import "SXGameScene.h"
 #import "SXGameMenuScene.h"
+#import "SXGameBannerView.h"
 
 @interface SXGameResultScene()
 
@@ -52,9 +53,18 @@
     return self;
 }
 
+- (void)initBannerView
+{
+    SXGameBannerView* bannerView = [SXGameBannerView getInstance];
+    //[bannerView preLoadAds];
+    [self.view addSubview:bannerView];
+    [bannerView presentBannerView];
+}
+
 - (void)didMoveToView:(SKView *)view
 {
     [_resultNode setText:[NSString stringWithFormat:@"%ld",(long)_score]];
+    [self initBannerView];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

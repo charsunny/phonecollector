@@ -7,6 +7,7 @@
 //
 
 #import "SXGamePauseView.h"
+#import "GADBannerView.h"
 
 
 #define BTN_WIDTH 50
