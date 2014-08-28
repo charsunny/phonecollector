@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		500E1ADF19ADD082000541CC /* buttonclick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 500E1ADE19ADD082000541CC /* buttonclick.mp3 */; };
+		504081EA19AF579600579841 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 504081E319AF579600579841 /* libWeiboSDK.a */; };
+		504081EB19AF579600579841 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 504081E419AF579600579841 /* WeiboSDK.bundle */; };
+		504081EC19AF579600579841 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 504081E719AF579600579841 /* libWeChatSDK.a */; };
 		509F583F19ADAD92001C0D8F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F583E19ADAD92001C0D8F /* Foundation.framework */; };
 		509F584119ADAD92001C0D8F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F584019ADAD92001C0D8F /* CoreGraphics.framework */; };
 		509F584319ADAD92001C0D8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509F584219ADAD92001C0D8F /* UIKit.framework */; };
@@ -38,6 +41,12 @@
 
 /* Begin PBXFileReference section */
 		500E1ADE19ADD082000541CC /* buttonclick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonclick.mp3; sourceTree = "<group>"; };
+		504081E319AF579600579841 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
+		504081E419AF579600579841 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		504081E519AF579600579841 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		504081E719AF579600579841 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		504081E819AF579600579841 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		504081E919AF579600579841 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		509F583B19ADAD92001C0D8F /* PhoneCollector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneCollector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509F583E19ADAD92001C0D8F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		509F584019ADAD92001C0D8F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,6 +110,7 @@
 				9DFD076819AF4E41009E35A4 /* SystemConfiguration.framework in Frameworks */,
 				9DFD076619AF4E3A009E35A4 /* StoreKit.framework in Frameworks */,
 				9DFD076419AF4E35009E35A4 /* MessageUI.framework in Frameworks */,
+				504081EA19AF579600579841 /* libWeiboSDK.a in Frameworks */,
 				9DFD076219AF4E30009E35A4 /* CoreTelephony.framework in Frameworks */,
 				9DFD076A19AF4ED6009E35A4 /* GameKit.framework in Frameworks */,
 				9DFD076019AF4E28009E35A4 /* AVFoundation.framework in Frameworks */,
@@ -111,6 +121,7 @@
 				509F584519ADAD92001C0D8F /* SpriteKit.framework in Frameworks */,
 				509F583F19ADAD92001C0D8F /* Foundation.framework in Frameworks */,
 				9DFD075819AF4DD9009E35A4 /* libGoogleAdMobAds.a in Frameworks */,
+				504081EC19AF579600579841 /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +133,26 @@
 			children = (
 			);
 			name = iPad;
+			sourceTree = "<group>";
+		};
+		504081E219AF579600579841 /* libWeiboSDK */ = {
+			isa = PBXGroup;
+			children = (
+				504081E319AF579600579841 /* libWeiboSDK.a */,
+				504081E419AF579600579841 /* WeiboSDK.bundle */,
+				504081E519AF579600579841 /* WeiboSDK.h */,
+			);
+			path = libWeiboSDK;
+			sourceTree = "<group>";
+		};
+		504081E619AF579600579841 /* WeChat */ = {
+			isa = PBXGroup;
+			children = (
+				504081E719AF579600579841 /* libWeChatSDK.a */,
+				504081E819AF579600579841 /* WXApi.h */,
+				504081E919AF579600579841 /* WXApiObject.h */,
+			);
+			path = WeChat;
 			sourceTree = "<group>";
 		};
 		509F583219ADAD92001C0D8F = {
@@ -165,13 +196,14 @@
 		509F584619ADAD92001C0D8F /* PhoneCollector */ = {
 			isa = PBXGroup;
 			children = (
+				504081E219AF579600579841 /* libWeiboSDK */,
+				504081E619AF579600579841 /* WeChat */,
 				9DFD075A19AF4DDF009E35A4 /* Google Ads */,
 				9DFD074919AF4DC2009E35A4 /* Util */,
 				504081E119AF398400579841 /* iPad */,
 				9D3A42D919AEC3400024FB5D /* View */,
 				509F584F19ADAD92001C0D8F /* SXAppDelegate.h */,
 				509F585019ADAD92001C0D8F /* SXAppDelegate.m */,
-				509F585219ADAD92001C0D8F /* Main.storyboard */,
 				509F585519ADAD92001C0D8F /* SXViewController.h */,
 				509F585619ADAD92001C0D8F /* SXViewController.m */,
 				509F585819ADAD92001C0D8F /* SXGameScene.h */,
@@ -189,6 +221,7 @@
 		509F584719ADAD92001C0D8F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				509F585219ADAD92001C0D8F /* Main.storyboard */,
 				500E1ADE19ADD082000541CC /* buttonclick.mp3 */,
 				509F584819ADAD92001C0D8F /* PhoneCollector-Info.plist */,
 				509F584919ADAD92001C0D8F /* InfoPlist.strings */,
@@ -325,6 +358,7 @@
 				509F585419ADAD92001C0D8F /* Main.storyboard in Resources */,
 				500E1ADF19ADD082000541CC /* buttonclick.mp3 in Resources */,
 				9DFD075919AF4DD9009E35A4 /* README.txt in Resources */,
+				504081EB19AF579600579841 /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,10 +495,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PhoneCollector",
+					"$(PROJECT_DIR)/PhoneCollector/libWeiboSDK",
+					"$(PROJECT_DIR)/PhoneCollector/WeChat",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "031fe687-497f-469c-b389-120d1c499f68";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -485,10 +521,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/PhoneCollector",
+					"$(PROJECT_DIR)/PhoneCollector/libWeiboSDK",
+					"$(PROJECT_DIR)/PhoneCollector/WeChat",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "031fe687-497f-469c-b389-120d1c499f68";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;

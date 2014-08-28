@@ -8,12 +8,20 @@
 
 #import "SXAppDelegate.h"
 @import GameKit;
+#import "WXApi.h"
+#import "WeiboSDK.h"
+
+#define AppKey_WeiXin               @"wxf04441074e0bff9c"
+#define AppKey_WeiBo                @"979020811"
 
 @implementation SXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [WXApi registerApp:AppKey_WeiXin];
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:AppKey_WeiBo];
     if (![[GKLocalPlayer localPlayer] isAuthenticated]) {
         [[GKLocalPlayer localPlayer] setAuthenticateHandler:^(UIViewController *controller, NSError *error) {
             if (!error) {

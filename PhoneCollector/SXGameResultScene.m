@@ -10,10 +10,12 @@
 #import "SXGameScene.h"
 #import "SXGameMenuScene.h"
 #import "SXGameBannerView.h"
+#import "WXApi.h"
+#import "WeiboSDK.h"
 @import GameKit;
 @import StoreKit;
 
-@interface SXGameResultScene()<GKGameCenterControllerDelegate,SKProductsRequestDelegate>
+@interface SXGameResultScene()<GKGameCenterControllerDelegate,SKProductsRequestDelegate,UIActionSheetDelegate>
 
 @property (assign, nonatomic) NSInteger bestScore;
 
@@ -141,7 +143,7 @@
     if ([_selectNode.name isEqualToString:@"home"]) {
         [self.view presentScene:[SXGameMenuScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
     } else if ([_selectNode.name isEqualToString:@"share"]) {
-        
+        [[[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信好友",@"微信朋友圈",@"新浪微博",nil] showInView:self.view];
     } else if ([_selectNode.name isEqualToString:@"restart"]) {
         [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
     } else if([_selectNode.name isEqualToString:@"leaderboard"])
@@ -188,4 +190,55 @@
     
 
 }
+
+#pragma mark -- share delegate 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        [self sendImageContentToCircle:NO];
+    } else if (buttonIndex == 1) {
+        [self sendImageContentToCircle:YES];
+    } else if (buttonIndex == 2) {
+        [self sendImageContentToWeibo];
+    }
+}
+
+- (void) sendImageContentToCircle:(BOOL)circle {    //发送内容给微信
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = @"好玩的2048游戏";
+    message.description = @"过来跟我一起玩吧！";
+    [message setThumbImage:[UIImage imageNamed:@"AppIcon"]];
+    
+    WXAppExtendObject *ext = [WXAppExtendObject object];
+    ext.extInfo = @"<xml>test</xml>";
+    ext.url = @"http://www.baidu.com";
+    
+    Byte* pBuffer = (Byte *)malloc(1024 * 100);
+    memset(pBuffer, 0, 1024 * 100);
+    NSData* data = [NSData dataWithBytes:pBuffer length:1024 * 100];
+    free(pBuffer);
+    
+    ext.fileData = data;
+    
+    message.mediaObject = ext;
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = circle?WXSceneTimeline:WXSceneSession;
+    
+    [WXApi sendReq:req];
+}
+
+- (void)sendImageContentToWeibo {
+    WBMessageObject* message = [[WBMessageObject alloc] init];
+    message.text = @"好玩的2048游戏";
+    WBImageObject* imageObject = [[WBImageObject alloc] init];
+    imageObject.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tt1" ofType:@"png"]];
+    message.imageObject = imageObject;
+    WBSendMessageToWeiboRequest* request = [WBSendMessageToWeiboRequest requestWithMessage:message];
+    request.userInfo = @{@"ShareMessageFrom": @"SXViewController"};
+    [WeiboSDK sendRequest:request];
+}
+
 @end
