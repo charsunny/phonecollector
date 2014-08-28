@@ -9,7 +9,7 @@
 #import "SXGameScene.h"
 #import "SXGamePauseView.h"
 #import "SXGameMenuScene.h"
-
+#import "SXGameResultScene.h"
 
 @interface SXGameScene()
 
@@ -114,7 +114,7 @@
     [bgView addSubview:downGuideLabel];
 
     UIButton* startButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [startButton setTitle:@"Start" forState:UIControlStateNormal];
+    [startButton setTitle:@"Tap to begin" forState:UIControlStateNormal];
     [startButton.titleLabel setFont:[UIFont fontWithName:@"Chalkduster" size:24]];
     [startButton sizeToFit];
     [startButton addTarget:self action:@selector(onStartGame:) forControlEvents:UIControlEventTouchUpInside];
@@ -341,7 +341,9 @@
 }
 
 - (void)showGameResult {
-    //NSLog(@"game over");
+    SXGameResultScene* scene = [SXGameResultScene sceneWithSize:self.frame.size];
+    scene.score = self.score;
+    [self.view presentScene:scene transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
 }
 
 @end

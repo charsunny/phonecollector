@@ -25,6 +25,7 @@
 @property (strong,nonatomic)UIButton* settingBtn;
 
 @property (strong,nonatomic)UIView* gameLogoView;
+
 @end
 
 @implementation SXGameMenuScene

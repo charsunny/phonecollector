@@ -10,4 +10,6 @@
 
 @interface SXGameResultScene : SKScene
 
+@property (assign, nonatomic) NSInteger score;
+
 @end
