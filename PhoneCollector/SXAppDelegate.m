@@ -7,12 +7,20 @@
 //
 
 #import "SXAppDelegate.h"
+@import GameKit;
 
 @implementation SXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    if (![[GKLocalPlayer localPlayer] isAuthenticated]) {
+        [[GKLocalPlayer localPlayer] setAuthenticateHandler:^(UIViewController *controller, NSError *error) {
+            if (!error) {
+                [controller dismissViewControllerAnimated:NO completion:nil];
+            }
+        }];
+    }
     return YES;
 }
 							
