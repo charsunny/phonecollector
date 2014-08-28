@@ -94,14 +94,54 @@
     return self;
 }
 
+- (UIView*)createGuideView {
+    
+    UIView* bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    bgView.backgroundColor = [UIColor clearColor];
+    
+    UILabel* upGuideLabel = [UILabel new];
+    [upGuideLabel setText:@"Swipe up to collect an Iphone 📱"];
+    [upGuideLabel setFont:[UIFont fontWithName:@"Chalkduster" size:14]];
+    [upGuideLabel sizeToFit];
+    upGuideLabel.center = CGPointMake(160, 80);
+    [bgView addSubview:upGuideLabel];
+    
+    UILabel* downGuideLabel = [UILabel new];
+    [downGuideLabel setText:@"Swipe down to abandon other phone"];
+    [downGuideLabel setFont:[UIFont fontWithName:@"Chalkduster" size:14]];
+    [downGuideLabel sizeToFit];
+    downGuideLabel.center = CGPointMake(160, 240);
+    [bgView addSubview:downGuideLabel];
+
+    UIButton* startButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [startButton setTitle:@"Start" forState:UIControlStateNormal];
+    [startButton.titleLabel setFont:[UIFont fontWithName:@"Chalkduster" size:24]];
+    [startButton sizeToFit];
+    [startButton addTarget:self action:@selector(onStartGame:) forControlEvents:UIControlEventTouchUpInside];
+    startButton.center = CGPointMake(160, 160);
+    [bgView addSubview:startButton];
+    
+    return bgView;
+}
+
 - (void)didMoveToView:(SKView *)view {
+    _gamePaused = YES;
     _swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeUp:)];
     _swipeUp.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:_swipeUp];
     _swipeDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeDown:)];
     _swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:_swipeDown];
+    UIView* guideView = [self createGuideView];
+    guideView.center = CGPointMake(self.size.width/2, self.size.height/2);
+    [self.view addSubview:guideView];
+
+}
+
+- (void)onStartGame:(UIButton*)sender {
     [self initGameControlView];
+    [[sender superview] removeFromSuperview];
+    _gamePaused = NO;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
