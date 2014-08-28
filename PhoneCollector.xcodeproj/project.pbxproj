@@ -23,7 +23,6 @@
 		9D3A42C319ADB9F50024FB5D /* SXGameResultScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42C219ADB9F50024FB5D /* SXGameResultScene.m */; };
 		9D3A42D819AEC3390024FB5D /* SXGamePauseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */; };
 		9DFD074519AF4CF4009E35A4 /* SXGameBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD074419AF4CF4009E35A4 /* SXGameBannerView.m */; };
-		9DFD074819AF4DBD009E35A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD074719AF4DBD009E35A4 /* Reachability.m */; };
 		9DFD075819AF4DD9009E35A4 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFD075619AF4DD9009E35A4 /* libGoogleAdMobAds.a */; };
 		9DFD075919AF4DD9009E35A4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9DFD075719AF4DD9009E35A4 /* README.txt */; };
 		9DFD075C19AF4E1C009E35A4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFD075B19AF4E1C009E35A4 /* AdSupport.framework */; };
@@ -33,6 +32,8 @@
 		9DFD076419AF4E35009E35A4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFD076319AF4E35009E35A4 /* MessageUI.framework */; };
 		9DFD076619AF4E3A009E35A4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFD076519AF4E3A009E35A4 /* StoreKit.framework */; };
 		9DFD076819AF4E41009E35A4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFD076719AF4E41009E35A4 /* SystemConfiguration.framework */; };
+		9DFD076A19AF4ED6009E35A4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFD076919AF4ED6009E35A4 /* GameKit.framework */; };
+		9DFD076D19AF5105009E35A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD076C19AF5105009E35A4 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,8 +67,6 @@
 		9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGamePauseView.m; sourceTree = "<group>"; };
 		9DFD074319AF4CF4009E35A4 /* SXGameBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameBannerView.h; sourceTree = "<group>"; };
 		9DFD074419AF4CF4009E35A4 /* SXGameBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameBannerView.m; sourceTree = "<group>"; };
-		9DFD074619AF4DBD009E35A4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../temp/Reachability/Reachability.h; sourceTree = "<group>"; };
-		9DFD074719AF4DBD009E35A4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../temp/Reachability/Reachability.m; sourceTree = "<group>"; };
 		9DFD074A19AF4DD9009E35A4 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		9DFD074B19AF4DD9009E35A4 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		9DFD074C19AF4DD9009E35A4 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -89,6 +88,9 @@
 		9DFD076319AF4E35009E35A4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		9DFD076519AF4E3A009E35A4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9DFD076719AF4E41009E35A4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9DFD076919AF4ED6009E35A4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		9DFD076B19AF5105009E35A4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		9DFD076C19AF5105009E35A4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				9DFD076619AF4E3A009E35A4 /* StoreKit.framework in Frameworks */,
 				9DFD076419AF4E35009E35A4 /* MessageUI.framework in Frameworks */,
 				9DFD076219AF4E30009E35A4 /* CoreTelephony.framework in Frameworks */,
+				9DFD076A19AF4ED6009E35A4 /* GameKit.framework in Frameworks */,
 				9DFD076019AF4E28009E35A4 /* AVFoundation.framework in Frameworks */,
 				9DFD075E19AF4E22009E35A4 /* AudioToolbox.framework in Frameworks */,
 				9DFD075C19AF4E1C009E35A4 /* AdSupport.framework in Frameworks */,
@@ -142,6 +145,7 @@
 		509F583D19ADAD92001C0D8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9DFD076919AF4ED6009E35A4 /* GameKit.framework */,
 				9DFD076719AF4E41009E35A4 /* SystemConfiguration.framework */,
 				9DFD076519AF4E3A009E35A4 /* StoreKit.framework */,
 				9DFD076319AF4E35009E35A4 /* MessageUI.framework */,
@@ -226,8 +230,8 @@
 		9DFD074919AF4DC2009E35A4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				9DFD074619AF4DBD009E35A4 /* Reachability.h */,
-				9DFD074719AF4DBD009E35A4 /* Reachability.m */,
+				9DFD076B19AF5105009E35A4 /* Reachability.h */,
+				9DFD076C19AF5105009E35A4 /* Reachability.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -282,6 +286,16 @@
 				CLASSPREFIX = SX;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Sun Xi";
+				TargetAttributes = {
+					509F583A19ADAD92001C0D8F = {
+						DevelopmentTeam = CX3SW7JBRE;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 509F583619ADAD92001C0D8F /* Build configuration list for PBXProject "PhoneCollector" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -328,7 +342,7 @@
 				509F584D19ADAD92001C0D8F /* main.m in Sources */,
 				9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */,
 				9D3A42D819AEC3390024FB5D /* SXGamePauseView.m in Sources */,
-				9DFD074819AF4DBD009E35A4 /* Reachability.m in Sources */,
+				9DFD076D19AF5105009E35A4 /* Reachability.m in Sources */,
 				509F585119ADAD92001C0D8F /* SXAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,6 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoneCollector/PhoneCollector-Prefix.pch";
 				INFOPLIST_FILE = "PhoneCollector/PhoneCollector-Info.plist";
@@ -449,6 +464,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "031fe687-497f-469c-b389-120d1c499f68";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -461,6 +477,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoneCollector/PhoneCollector-Prefix.pch";
 				INFOPLIST_FILE = "PhoneCollector/PhoneCollector-Info.plist";
@@ -471,6 +488,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "031fe687-497f-469c-b389-120d1c499f68";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
