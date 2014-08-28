@@ -258,7 +258,7 @@
             phoneName = @"iphone";
             break;
     }
-    SKSpriteNode* spriteNode =  [SKSpriteNode spriteNodeWithImageNamed:@"iphone"];
+    SKSpriteNode* spriteNode =  [SKSpriteNode spriteNodeWithImageNamed:phoneName];
     spriteNode.userData = [NSMutableDictionary dictionaryWithDictionary:@{@"type":@(phonetype)}];
     return spriteNode;
 }
