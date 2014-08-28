@@ -70,6 +70,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		504081E119AF398400579841 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
 		509F583219ADAD92001C0D8F = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +110,7 @@
 		509F584619ADAD92001C0D8F /* PhoneCollector */ = {
 			isa = PBXGroup;
 			children = (
+				504081E119AF398400579841 /* iPad */,
 				9D3A42D919AEC3400024FB5D /* View */,
 				509F584F19ADAD92001C0D8F /* SXAppDelegate.h */,
 				509F585019ADAD92001C0D8F /* SXAppDelegate.m */,
@@ -346,8 +354,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoneCollector/PhoneCollector-Prefix.pch";
 				INFOPLIST_FILE = "PhoneCollector/PhoneCollector-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -361,8 +371,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoneCollector/PhoneCollector-Prefix.pch";
 				INFOPLIST_FILE = "PhoneCollector/PhoneCollector-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

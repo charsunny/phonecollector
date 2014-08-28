@@ -14,8 +14,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
     // Configure the view.
+    [super viewDidAppear:animated];
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;

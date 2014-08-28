@@ -35,26 +35,41 @@
         
         self.backgroundColor = UIColorFromRGB(0x7ED321);
         
-        SKLabelNode* startLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        SKLabelNode* gameName = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
+        
+        [gameName setText:@"📱Picker"];
+        [gameName setFontSize:60];
+        gameName.position = CGPointMake(size.width/2, 3*size.height/4);
+        [self addChild:gameName];
+        [gameName setName:@"name"];
+        
+        SKLabelNode* startLabel = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
         [startLabel setText:@"Start"];
         [startLabel setFontSize:40];
         startLabel.position = CGPointMake(size.width/2, size.height/2);
         [self addChild:startLabel];
         [startLabel setName:@"start"];
         
-        SKLabelNode* settingLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        SKLabelNode* settingLabel = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
         [settingLabel setFontSize:20];
         [settingLabel setText:@"Settings"];
-        settingLabel.position = CGPointMake(size.width/4, settingLabel.frame.size.height + 20);
+        settingLabel.position = CGPointMake(size.width/4, size.height/4);
         [self addChild:settingLabel];
         [settingLabel setName:@"setting"];
         
-        SKLabelNode* leadboardLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        SKLabelNode* leadboardLabel = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
         [leadboardLabel setText:@"Leadboard"];
         [leadboardLabel setFontSize:20];
-        leadboardLabel.position = CGPointMake(3*size.width/4, leadboardLabel.frame.size.height + 20);
+        leadboardLabel.position = CGPointMake(3*size.width/4, size.height/4);
         [self addChild:leadboardLabel];
         [leadboardLabel setName:@"leadboard"];
+        
+        SKLabelNode* adLabel = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
+        [adLabel setText:@"Remove Ads"];
+        [adLabel setFontSize:20];
+        adLabel.position = CGPointMake(size.width/2, adLabel.frame.size.height + 20);
+        [self addChild:adLabel];
+        [adLabel setName:@"removead"];
     }
     return self;
 }
@@ -66,7 +81,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [[touches anyObject] locationInNode:self];
     SKLabelNode* labelNode = (SKLabelNode*)[self nodeAtPoint:pt];
-    if ([labelNode isKindOfClass:[SKLabelNode class]] && [labelNode containsPoint:pt]) {
+    if ([labelNode isKindOfClass:[SKLabelNode class]] && [labelNode containsPoint:pt] && ![labelNode.name isEqualToString:@"name"]) {
         [labelNode runAction:[SKAction playSoundFileNamed:@"buttonclick.mp3" waitForCompletion:NO] completion:nil];
         [labelNode setFontColor:[SKColor redColor]];
         [labelNode setScale:1.2f];

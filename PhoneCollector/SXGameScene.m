@@ -75,6 +75,7 @@
     return self;
 }
 
+
 - (void)initGameControlView
 {
     _surfaceNode = [SKShapeNode node];
@@ -90,7 +91,7 @@
     SKLabelNode* scoreLabel = [SKLabelNode node];
     [scoreLabel setText:[NSString stringWithFormat:@"%d", _score]];
     [scoreLabel setName:@"score"];
-    [scoreLabel setFontName:@"Chalkduster"];
+    [scoreLabel setFontName:GAME_FONT];
     [scoreLabel setFontSize:40];
     [scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height - 60)];
     [_surfaceNode addChild:scoreLabel];
@@ -118,21 +119,21 @@
     
     UILabel* upGuideLabel = [UILabel new];
     [upGuideLabel setText:@"Swipe up to collect an Iphone 📱"];
-    [upGuideLabel setFont:[UIFont fontWithName:@"Chalkduster" size:14]];
+    [upGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:14]];
     [upGuideLabel sizeToFit];
     upGuideLabel.center = CGPointMake(160, 80);
     [bgView addSubview:upGuideLabel];
     
     UILabel* downGuideLabel = [UILabel new];
     [downGuideLabel setText:@"Swipe down to abandon other phone"];
-    [downGuideLabel setFont:[UIFont fontWithName:@"Chalkduster" size:14]];
+    [downGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:14]];
     [downGuideLabel sizeToFit];
     downGuideLabel.center = CGPointMake(160, 240);
     [bgView addSubview:downGuideLabel];
 
     UIButton* startButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [startButton setTitle:@"Tap to begin" forState:UIControlStateNormal];
-    [startButton.titleLabel setFont:[UIFont fontWithName:@"Chalkduster" size:24]];
+    [startButton.titleLabel setFont:[UIFont fontWithName:GAME_FONT size:24]];
     [startButton sizeToFit];
     [startButton addTarget:self action:@selector(onStartGame:) forControlEvents:UIControlEventTouchUpInside];
     startButton.center = CGPointMake(160, 160);
@@ -150,7 +151,7 @@
     _swipeDown.direction = UISwipeGestureRecognizerDirectionDown;
     [self.view addGestureRecognizer:_swipeDown];
     UIView* guideView = [self createGuideView];
-    guideView.center = CGPointMake(self.size.width/2, self.size.height/2);
+    guideView.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [self.view addSubview:guideView];
 
 }
@@ -247,7 +248,9 @@
         _firstNumber = 0;
         
         SKSpriteNode* phoneNode = [self createPhoneNode:rand()%2];
-        [phoneNode setScale:0.5f];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            [phoneNode setScale:0.5f];
+        }
         phoneNode.position = CGPointMake(self.size.width + 32, self.size.height/2);
         [self addChild:phoneNode];
         [actionNodeArr addObject:phoneNode];
@@ -305,13 +308,7 @@
 #pragma mark -- pasueview delegate -- 
 
 - (void)handleRestart:(UIButton*)button {
-    self.score = 0;
-    [actionNodeArr enumerateObjectsUsingBlock:^(SKSpriteNode* node, NSUInteger idx, BOOL *stop) {
-        [node removeFromParent];
-    }];
-    [actionNodeArr removeAllObjects];
-    [_pauseView removeFromSuperview];
-    _gamePaused = NO;
+    [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
 }
 
 - (void)handleResume:(UIButton*)button {
