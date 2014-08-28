@@ -10,6 +10,7 @@
 #import "SXGamePauseView.h"
 #import "SXGameMenuScene.h"
 #import "SXGameResultScene.h"
+#import "SXGameBannerView.h"
 
 @interface SXGameScene()<SXGamePauseViewDelegate>
 {
@@ -110,6 +111,7 @@
     [_pauseBtnNode setHidden:YES];
     [_surfaceNode addChild:_pauseBtnNode];
     
+    [[SXGameBannerView getInstance]preLoadAds];
 }
 
 - (UIView*)createGuideView {
@@ -241,7 +243,7 @@
         return;
     }
     _firstNumber++;
-    NSLog(@"%d",_firstNumber);
+    //NSLog(@"%d",_firstNumber);
     if ( _firstNumber  > 15)
     {
         NSLog(@"inside");

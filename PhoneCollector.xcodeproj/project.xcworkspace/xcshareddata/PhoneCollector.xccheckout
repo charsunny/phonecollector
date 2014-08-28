@@ -10,6 +10,8 @@
 	<string>PhoneCollector</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>7070BA961BCA286ED2393408B1E3D78393C99B33</key>
+		<string>github.com:tonymillion/Reachability.git</string>
 		<key>B4348CE7F46FEDBD92D2BB53334806DB4647AD65</key>
 		<string>github.com:charsunny/phonecollector.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>PhoneCollector.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>7070BA961BCA286ED2393408B1E3D78393C99B33</key>
+		<string>../../../temp/Reachability</string>
 		<key>B4348CE7F46FEDBD92D2BB53334806DB4647AD65</key>
 		<string>../..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>B4348CE7F46FEDBD92D2BB53334806DB4647AD65</string>
 			<key>IDESourceControlWCCName</key>
 			<string>phonecollector</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7070BA961BCA286ED2393408B1E3D78393C99B33</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Reachability</string>
 		</dict>
 	</array>
 </dict>

@@ -9,8 +9,11 @@
 #import "SXGameResultScene.h"
 #import "SXGameScene.h"
 #import "SXGameMenuScene.h"
+#import "SXGameBannerView.h"
+@import GameKit;
+@import StoreKit;
 
-@interface SXGameResultScene()
+@interface SXGameResultScene()<GKGameCenterControllerDelegate,SKProductsRequestDelegate>
 
 @property (assign, nonatomic) NSInteger bestScore;
 
@@ -66,9 +69,20 @@
         shareNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/2 - 110);
         [self addChild:shareNode];
         
+        SKSpriteNode* leaderBoardNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Share"] size:CGSizeMake(30, 40)];
+        leaderBoardNode.name = @"leaderboard";
+        leaderBoardNode.position = CGPointMake(self.size.width/2 - 60, self.size.height/2 - 150);
+        [self addChild:leaderBoardNode];
+        
+        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Share"] size:CGSizeMake(30, 40)];
+        upgradeNode.name = @"upgrade";
+        upgradeNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/2 - 150);
+        [self addChild:upgradeNode];
+        
     }
     return self;
 }
+
 
 - (NSInteger)bestScore {
     return [[[NSUserDefaults standardUserDefaults] objectForKey:@"bestscore"] integerValue];
@@ -79,15 +93,29 @@
     [[NSUserDefaults standardUserDefaults] setValue:@(bestScore) forKey:@"bestscore"];
 }
 
+- (void)initBannerView
+{
+    SXGameBannerView* bannerView = [SXGameBannerView getInstance];
+    //[bannerView preLoadAds];
+    [self.view addSubview:bannerView];
+    [bannerView presentBannerView];
+
+}
+
 - (void)didMoveToView:(SKView *)view
 {
     if (self.score > self.bestScore) {
         [_resultTitleNode setText:@"New Best Score!"];
         self.bestScore = self.score;
+        GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:@"best_score"];
+        scoreReporter.value = _score;
+        [GKScore reportScores:@[scoreReporter] withCompletionHandler:nil];
     }
     [_resultNode setText:[NSString stringWithFormat:@"%ld",(long)_score]];
     [_bestNode setText:[NSString stringWithFormat:@"Best %ld", (long)self.bestScore]];
+    [self initBannerView];
 }
+
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     CGPoint pt = [[touches anyObject] locationInNode:self];
@@ -116,8 +144,48 @@
         
     } else if ([_selectNode.name isEqualToString:@"restart"]) {
         [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
+    } else if([_selectNode.name isEqualToString:@"leaderboard"])
+    {
+        GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+        [_selectNode runAction:[SKAction playSoundFileNamed:@"buttonclick.mp3" waitForCompletion:NO] completion:nil];
+        if (gameCenterController != nil)
+        {
+            gameCenterController.gameCenterDelegate = self;
+            [[[[[UIApplication sharedApplication] delegate]window]rootViewController]presentViewController:gameCenterController animated:YES completion:nil];
+        }
+    } else if([_selectNode.name isEqualToString:@"upgrade"])
+    {
+        if([SKPaymentQueue canMakePayments])
+        {
+            SKProductsRequest* request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:@"remove_ad"]];
+            request.delegate = self;
+            [request start];
+        }
     }
 }
 
+#pragma mark -- leaderboarddelegate --
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController {
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
+    if (![[GKLocalPlayer localPlayer] isAuthenticated]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"gamecenter:"]];
+    }
+}
 
+#pragma mark -- buy item delegate -- 
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+    SKProduct *product = [[response products] firstObject];
+    UIAlertView* alertView;
+    if (product != nil) {
+        SKPayment *payment = [SKPayment paymentWithProduct:product];
+        [[SKPaymentQueue defaultQueue] addPayment: payment];
+    } else {
+        NSString* string = NSLocalizedString(@"The Unlock System is unreachable right now,please try again a bit later", @"unreachable staff");
+        alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Tip", @"Tip") message:string delegate:self cancelButtonTitle:NSLocalizedString(@"OK", @"OK") otherButtonTitles:nil];
+    }
+    alertView.tag = 100;
+    [alertView show];
+    
+
+}
 @end
