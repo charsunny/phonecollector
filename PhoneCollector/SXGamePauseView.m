@@ -61,19 +61,22 @@
 
 - (void)handleRestart:(UIButton*)button
 {
-    NSLog(@"Restart");
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{ @"cmd":@"restart" }];
+    if ([self.delegate respondsToSelector:@selector(handleRestart:)]) {
+        [self.delegate handleRestart:button];
+    }
 }
 
 - (void)handleResume:(UIButton*)button
 {
-    NSLog(@"Resume");
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{ @"cmd":@"resume" }];
+    if ([self.delegate respondsToSelector:@selector(handleResume:)]) {
+        [self.delegate handleResume:button];
+    }
 }
 
 - (void)handleHome:(UIButton*)button
 {
-    NSLog(@"Home");
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{ @"cmd":@"home" }];
+    if ([self.delegate respondsToSelector:@selector(handleHome:)]) {
+        [self.delegate handleHome:button];
+    }
 }
 @end

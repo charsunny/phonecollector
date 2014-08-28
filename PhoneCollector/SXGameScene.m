@@ -11,7 +11,10 @@
 #import "SXGameMenuScene.h"
 #import "SXGameResultScene.h"
 
-@interface SXGameScene()
+@interface SXGameScene()<SXGamePauseViewDelegate>
+{
+    NSMutableArray* actionNodeArr;
+}
 
 @property (strong, nonatomic) UISwipeGestureRecognizer* swipeUp;
 
@@ -40,9 +43,6 @@
 @end
 
 @implementation SXGameScene
-{
-    NSMutableArray* actionNodeArr;
-}
 
 - (void)setScore:(int)score
 {
@@ -60,38 +60,55 @@
         _animationTime = 1.0;
         _updateInterval = 0.5;
         self.score = 0;
-        
         _firstNumber = 0;
         
         //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         self.backgroundColor = UIColorFromRGB(0xFFAB21);
-        _surfaceNode = [SKShapeNode node];
-        CGPathRef path = CGPathCreateWithRect(self.frame, nil);
-        _surfaceNode.path = path;
-        CGPathRelease(path);
-        _surfaceNode.antialiased = NO;
-        _surfaceNode.lineWidth = 1.0;
-        _surfaceNode.strokeColor = [SKColor orangeColor];
-        _surfaceNode.name = @"surface";
-        [self addChild:_surfaceNode];
         
-        SKLabelNode* scoreLabel = [SKLabelNode node];
-        [scoreLabel setText:[NSString stringWithFormat:@"%d", _score]];
-        [scoreLabel setName:@"score"];
-        [scoreLabel setFontName:@"Chalkduster"];
-        [scoreLabel setFontSize:40];
-        [scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height - 60)];
-        [_surfaceNode addChild:scoreLabel];
-        
-        SKSpriteNode* dustbin = [[SKSpriteNode alloc]initWithImageNamed:@"Dustbin"];
-        dustbin.name = @"dustbin";
-        //dustbin.size
-        dustbin.position = CGPointMake(self.size.width / 2,30);
-        [_surfaceNode addChild:dustbin];
+        [self initGameControlView];
         
         actionNodeArr = [[NSMutableArray alloc]init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onEnterBackground:) name:@"resignactive" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onEnterForeground:) name:@"becomeactive" object:nil];
     }
     return self;
+}
+
+- (void)initGameControlView
+{
+    _surfaceNode = [SKShapeNode node];
+    CGPathRef path = CGPathCreateWithRect(self.frame, nil);
+    _surfaceNode.path = path;
+    CGPathRelease(path);
+    _surfaceNode.antialiased = NO;
+    _surfaceNode.lineWidth = 1.0;
+    _surfaceNode.strokeColor = [SKColor orangeColor];
+    _surfaceNode.name = @"surface";
+    [self addChild:_surfaceNode];
+    
+    SKLabelNode* scoreLabel = [SKLabelNode node];
+    [scoreLabel setText:[NSString stringWithFormat:@"%d", _score]];
+    [scoreLabel setName:@"score"];
+    [scoreLabel setFontName:@"Chalkduster"];
+    [scoreLabel setFontSize:40];
+    [scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height - 60)];
+    [_surfaceNode addChild:scoreLabel];
+    
+    SKSpriteNode* dustbin = [[SKSpriteNode alloc]initWithImageNamed:@"Dustbin"];
+    dustbin.name = @"dustbin";
+    //dustbin.size
+    dustbin.position = CGPointMake(self.size.width / 2,30);
+    [_surfaceNode addChild:dustbin];
+    
+    _pauseBtnNode = [[SKSpriteNode alloc]initWithImageNamed:@"Pause"];
+    _pauseBtnNode.anchorPoint = CGPointMake(0, 0);
+    _pauseBtnNode.size = CGSizeMake(25, 25);
+    _pauseBtnNode.position = CGPointMake(10 , 10);
+    _pauseBtnNode.name = @"pauseNode";
+    [_pauseBtnNode setHidden:YES];
+    [_surfaceNode addChild:_pauseBtnNode];
+    
 }
 
 - (UIView*)createGuideView {
@@ -138,8 +155,14 @@
 
 }
 
+- (void)willMoveFromView:(SKView *)view {
+    [view removeGestureRecognizer:_swipeUp];
+    [view removeGestureRecognizer:_swipeDown];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)onStartGame:(UIButton*)sender {
-    [self initGameControlView];
+    [[_surfaceNode childNodeWithName:@"pauseNode"] setHidden:NO];
     [[sender superview] removeFromSuperview];
     _gamePaused = NO;
 }
@@ -154,71 +177,19 @@
         
         _gamePaused = !_gamePaused;
         if (_gamePaused) {
-            [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                ((SKSpriteNode*)actionNodeArr[idx]).paused = YES;
+            self.paused = YES;
+            [actionNodeArr enumerateObjectsUsingBlock:^(SKSpriteNode* obj, NSUInteger idx, BOOL *stop) {
+                [obj removeAllActions];
             }];
             _pauseView = [[SXGamePauseView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            _pauseView.delegate = self;
             [self.view addSubview:_pauseView];
         }
         else
         {
-            [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                ((SKSpriteNode*)actionNodeArr[idx]).paused = NO;
-            }];
-            [_pauseView removeFromSuperview];
+            [self handleResume:nil];
         }
-        
     }
-}
-
-- (void)initGameControlView
-{
-    _pauseBtnNode = [[SKSpriteNode alloc]initWithImageNamed:@"Pause"];
-    _pauseBtnNode.anchorPoint = CGPointMake(0, 0);
-    _pauseBtnNode.size = CGSizeMake(25, 25);
-    _pauseBtnNode.position = CGPointMake(10 , 10);
-    _pauseBtnNode.name = @"pauseNode";
-    [_surfaceNode addChild:_pauseBtnNode];
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handlePauseViewCmd:) name:@"cmd" object:nil];
-    
-}
-- (void)handlePauseViewCmd:(NSNotification*)notificator
-{
-    NSDictionary* dic = notificator.userInfo;
-    NSString* cmd = dic[@"cmd"];
-    if ([cmd isEqualToString:@"restart"]) {
-        self.score = 0;
-        [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            [((SKSpriteNode*)actionNodeArr[idx])removeFromParent];
-        }];
-        [actionNodeArr removeAllObjects];
-        [_pauseView removeFromSuperview];
-        _gamePaused = NO;
-    }
-    else if ([cmd isEqualToString:@"resume"]){
-        [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            ((SKSpriteNode*)actionNodeArr[idx]).paused = NO;
-        }];
-        _gamePaused = NO;
-        [_pauseView removeFromSuperview];
-    }
-    else if ([cmd isEqualToString:@"home"])
-    {
-        [_pauseView removeFromSuperview];
-        SKTransition* transition = [SKTransition doorsCloseVerticalWithDuration:0.6];
-        
-        SKScene * scene = [SXGameMenuScene sceneWithSize:self.frame.size];
-        scene.scaleMode = SKSceneScaleModeAspectFill;
-        
-        [self.scene.view presentScene:scene transition:transition];
-    }
-}
-
-
-- (void)willMoveFromView:(SKView *)view {
-    [view removeGestureRecognizer:_swipeUp];
-    [view removeGestureRecognizer:_swipeDown];
 }
 
 - (void)onSwipeUp:(UISwipeGestureRecognizer*)recognizer {
@@ -230,11 +201,6 @@
     SKNode* moveNode = [node copy];
     [_surfaceNode addChild:moveNode];
     [node removeFromParent];
-//    UIBezierPath*    aPath = [UIBezierPath bezierPath];
-//    [aPath moveToPoint:CGPointMake(self.size.width/2, self.size.height - 100)];
-//    [aPath closePath];
-//    CGPathRef bezierPath = aPath.CGPath;
-//    [moveNode runAction:[SKAction followPath:bezierPath duration:0.3]];
     [moveNode runAction:[SKAction repeatActionForever:[SKAction rotateByAngle:360 duration:1.0f]] completion:nil];
     [moveNode runAction:[SKAction moveTo:CGPointMake(self.size.width/2, self.size.height - 100) duration:0.3f] completion:^{
         [moveNode removeFromParent];
@@ -286,41 +252,12 @@
         [self addChild:phoneNode];
         [actionNodeArr addObject:phoneNode];
         [phoneNode runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:_animationTime] completion:^{
-            NSLog(@"animation finish");
             [phoneNode removeFromParent];
             [self showGameResult];
             [actionNodeArr removeObject:phoneNode];
         }];
     }
 }
-
-
-//-(void)update:(CFTimeInterval)currentTime {
-//    /* Called before each frame is rendered */
-//    //NSLog(@"%f",currentTime);
-//    if (_timeInterval == 0) {
-//        _timeInterval = currentTime;
-//        return;
-//    }
-//    if (currentTime - _timeInterval > _updateInterval) {
-//        NSLog(@"%f",_updateInterval);
-//        _timeInterval = currentTime;
-//        _tickCount++;
-//        if (_tickCount > 40) {
-//            _tickCount = 40;
-//        }
-//        _updateInterval = 0.5 - 0.05*(_tickCount/10);
-//        SKSpriteNode* phoneNode = [self createPhoneNode:rand()%2];
-//        [phoneNode setScale:0.5f];
-//        phoneNode.position = CGPointMake(self.size.width + 32, self.size.height/2);
-//        [self addChild:phoneNode];
-//        [phoneNode runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:_animationTime] completion:^{
-//            NSLog(@"animation finish");
-//            [phoneNode removeFromParent];
-//            [self showGameResult];
-//        }];
-//    }
-//}
 
 - (SKSpriteNode*)createPhoneNode:(int)phonetype {
     NSString* phoneName = nil;
@@ -344,6 +281,62 @@
     SXGameResultScene* scene = [SXGameResultScene sceneWithSize:self.frame.size];
     scene.score = self.score;
     [self.view presentScene:scene transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
+}
+
+#pragma mark handle background events
+
+- (void)onEnterBackground:(NSNotification*)notif {
+    if (!_gamePaused) {
+        _gamePaused = !_gamePaused;
+        self.paused = YES;
+        [actionNodeArr enumerateObjectsUsingBlock:^(SKSpriteNode* obj, NSUInteger idx, BOOL *stop) {
+            [obj removeAllActions];
+        }];
+        _pauseView = [[SXGamePauseView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        _pauseView.delegate = self;
+        [self.view addSubview:_pauseView];
+    }
+}
+
+- (void)onEnterForeground:(NSNotification*)notif {
+    
+}
+
+#pragma mark -- pasueview delegate -- 
+
+- (void)handleRestart:(UIButton*)button {
+    self.score = 0;
+    [actionNodeArr enumerateObjectsUsingBlock:^(SKSpriteNode* node, NSUInteger idx, BOOL *stop) {
+        [node removeFromParent];
+    }];
+    [actionNodeArr removeAllObjects];
+    [_pauseView removeFromSuperview];
+    _gamePaused = NO;
+}
+
+- (void)handleResume:(UIButton*)button {
+    [actionNodeArr enumerateObjectsUsingBlock:^(SKSpriteNode* node, NSUInteger idx, BOOL *stop) {
+        float animationTime = _animationTime* (node.position.x + 32)/(self.size.width + 64);
+        [node runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:animationTime] completion:^{
+            [node removeFromParent];
+            [self showGameResult];
+            [actionNodeArr removeObject:node];
+        }];
+    }];
+    _gamePaused = NO;
+    self.paused = _gamePaused;
+    [_pauseView removeFromSuperview];
+    
+}
+
+- (void)handleHome:(UIButton*)button {
+    [_pauseView removeFromSuperview];
+    SKTransition* transition = [SKTransition doorsCloseVerticalWithDuration:0.3];
+    
+    SKScene * scene = [SXGameMenuScene sceneWithSize:self.frame.size];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    
+    [self.scene.view presentScene:scene transition:transition];
 }
 
 @end

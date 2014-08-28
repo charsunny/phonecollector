@@ -8,7 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SXGamePauseViewDelegate <NSObject>
+
+- (void)handleRestart:(UIButton*)button;
+
+- (void)handleResume:(UIButton*)button;
+
+- (void)handleHome:(UIButton*)button;
+
+@end
+
 @interface SXGamePauseView : UIView
+
+@property (weak, nonatomic) id<SXGamePauseViewDelegate> delegate;
 
 - (void)initUI;
 

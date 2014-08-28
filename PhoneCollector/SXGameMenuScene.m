@@ -10,7 +10,7 @@
 #import "SXGameScene.h"
 
 
-#define TRANSITION_TIME_INTERVAL 0.6
+#define TRANSITION_TIME_INTERVAL 0.3
 
 @interface SXGameMenuScene()
 
