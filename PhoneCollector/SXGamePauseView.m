@@ -30,29 +30,32 @@
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     button.titleLabel.alpha = 0;
     [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",button.titleLabel.text]] forState:UIControlStateNormal];
+    button.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    button.imageView.clipsToBounds = NO;
     [self addSubview:button];
 }
 - (void)initUI
 {
-    CGRect f = self.frame;
-    //background view
+    CGSize fs = self.frame.size;
+    CGFloat padding = ( fs.width - 3 * BTN_WIDTH ) / 4;
     
     //restart
-    UIButton* restartBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, f.size.height / 2 , BTN_WIDTH, BTN_WIDTH)];
+    UIButton* restartBtn = [[UIButton alloc]initWithFrame:CGRectMake(padding, fs.height / 2 , BTN_WIDTH, BTN_WIDTH)];
     [restartBtn setTitle:@"Restart" forState:UIControlStateNormal];
     [self configureButton:restartBtn];
     
     //resume
-    UIButton* resumeBtn = [[UIButton alloc]initWithFrame:CGRectMake(BTN_WIDTH + 10, f.size.height / 2, BTN_WIDTH, BTN_WIDTH)];
+    UIButton* resumeBtn = [[UIButton alloc]initWithFrame:CGRectMake(restartBtn.frame.origin.x + BTN_WIDTH + padding, fs.height / 2, BTN_WIDTH, BTN_WIDTH)];
     [resumeBtn setTitle:@"Resume" forState:UIControlStateNormal];
     [self configureButton:resumeBtn];
     
     //home
-    UIButton* homeBtn = [[UIButton alloc]initWithFrame:CGRectMake(BTN_WIDTH*2 + 10, f.size.height / 2, BTN_WIDTH, BTN_WIDTH)];
-    homeBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    UIButton* homeBtn = [[UIButton alloc]initWithFrame:CGRectMake(resumeBtn.frame.origin.x +  BTN_WIDTH + padding, fs.height / 2, BTN_WIDTH, BTN_WIDTH)];
     [homeBtn setTitle:@"Home" forState:UIControlStateNormal];
     [self configureButton:homeBtn];
     
+    //UIView* spLineUp = [UIView alloc]initWithFrame:CGRectMake(, , , )
+    //UIView* spLineBottom = [UIView alloc]initWithFrame:CGRectMake(, , , )
     //voice
 }
 

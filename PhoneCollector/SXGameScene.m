@@ -49,6 +49,8 @@
     _score = score;
     SKLabelNode* label = (SKLabelNode*)[_surfaceNode childNodeWithName:@"score"];
     [label setText:[NSString stringWithFormat:@"%d", _score]];
+    SKAction* sequenceAction = [SKAction sequence:@[[SKAction scaleTo:1.2 duration:0.15],[SKAction scaleTo:1 duration:0.1]]];
+    [label runAction:sequenceAction];
 }
 
 -(id)initWithSize:(CGSize)size {
