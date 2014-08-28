@@ -21,6 +21,7 @@
 		509F585E19ADAD92001C0D8F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 509F585D19ADAD92001C0D8F /* Images.xcassets */; };
 		9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */; };
 		9D3A42C319ADB9F50024FB5D /* SXGameResultScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42C219ADB9F50024FB5D /* SXGameResultScene.m */; };
+		9D3A42D819AEC3390024FB5D /* SXGamePauseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,8 @@
 		9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameMenuScene.m; sourceTree = "<group>"; };
 		9D3A42C119ADB9F50024FB5D /* SXGameResultScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameResultScene.h; sourceTree = "<group>"; };
 		9D3A42C219ADB9F50024FB5D /* SXGameResultScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameResultScene.m; sourceTree = "<group>"; };
+		9D3A42D619AEC3390024FB5D /* SXGamePauseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGamePauseView.h; sourceTree = "<group>"; };
+		9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGamePauseView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,7 @@
 		509F584619ADAD92001C0D8F /* PhoneCollector */ = {
 			isa = PBXGroup;
 			children = (
+				9D3A42D919AEC3400024FB5D /* View */,
 				509F584F19ADAD92001C0D8F /* SXAppDelegate.h */,
 				509F585019ADAD92001C0D8F /* SXAppDelegate.m */,
 				509F585219ADAD92001C0D8F /* Main.storyboard */,
@@ -145,6 +149,15 @@
 				509F586D19ADAD92001C0D8F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9D3A42D919AEC3400024FB5D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9D3A42D619AEC3390024FB5D /* SXGamePauseView.h */,
+				9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +232,7 @@
 				9D3A42C319ADB9F50024FB5D /* SXGameResultScene.m in Sources */,
 				509F584D19ADAD92001C0D8F /* main.m in Sources */,
 				9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */,
+				9D3A42D819AEC3390024FB5D /* SXGamePauseView.m in Sources */,
 				509F585119ADAD92001C0D8F /* SXAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

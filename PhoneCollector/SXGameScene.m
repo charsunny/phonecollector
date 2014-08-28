@@ -7,7 +7,7 @@
 //
 
 #import "SXGameScene.h"
-//#import "SXGamePauseView.h"
+#import "SXGamePauseView.h"
 
 @interface SXGameScene()
 
@@ -29,17 +29,28 @@
 //Game Control View
 @property (strong,nonatomic)SKShapeNode* pauseBtnNode;
 
+@property (strong,nonatomic)SXGamePauseView* pauseView;
+
+@property (nonatomic)int firstNumber;
+
+@property (nonatomic)BOOL gamePaused;
+
 @end
 
 @implementation SXGameScene
+{
+    NSMutableArray* actionNodeArr;
+}
 
--(id)initWithSize:(CGSize)size {    
+-(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
         _animationTime = 1.0;
         _updateInterval = 0.5;
         _score = 0;
+        
+        _firstNumber = 0;
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         _surfaceNode = [SKShapeNode node];
@@ -50,6 +61,11 @@
         _surfaceNode.lineWidth = 1.0;
         _surfaceNode.strokeColor = [SKColor orangeColor];
         _surfaceNode.name = @"surface";
+        
+        SKSpriteNode* backgroundNode= [[SKSpriteNode alloc]initWithImageNamed:@"PauseBackground"];
+        backgroundNode.anchorPoint = CGPointMake(0, 0);
+        //[_surfaceNode addChild:backgroundNode];
+
         [self addChild:_surfaceNode];
         
         SKLabelNode* scoreLabel = [SKLabelNode node];
@@ -59,6 +75,8 @@
         [scoreLabel setFontSize:40];
         [scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height - 60)];
         [_surfaceNode addChild:scoreLabel];
+        
+        actionNodeArr = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -79,8 +97,24 @@
     CGPoint location = [touch locationInNode:self];
     SKNode* node = [self nodeAtPoint:location];
     if ([node.name isEqualToString:@"pauseNode"]) {
-        self.scene.view.paused = !self.scene.view.paused;
-        //present pause view
+        //self.scene.view.paused = !self.scene.view.paused;
+        
+        _gamePaused = !_gamePaused;
+        if (_gamePaused) {
+            [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                ((SKSpriteNode*)actionNodeArr[idx]).paused = YES;
+            }];
+            _pauseView = [[SXGamePauseView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            [self.view addSubview:_pauseView];
+        }
+        else
+        {
+            [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                ((SKSpriteNode*)actionNodeArr[idx]).paused = NO;
+            }];
+            [_pauseView removeFromSuperview];
+        }
+        
     }
 }
 
@@ -92,6 +126,17 @@
     _pauseBtnNode.fillColor = [SKColor blueColor];
     _pauseBtnNode.name = @"pauseNode";
     [_surfaceNode addChild:_pauseBtnNode];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeGame) name:@"cmd" object:nil];
+    
+}
+- (void)resumeGame
+{
+    [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        ((SKSpriteNode*)actionNodeArr[idx]).paused = NO;
+    }];
+    _gamePaused = NO;
+    [_pauseView removeFromSuperview];
 }
 
 - (void)willMoveFromView:(SKView *)view {
@@ -146,29 +191,59 @@
     }];
 }
 
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
-    if (_timeInterval == 0) {
-        _timeInterval = currentTime;
+- (void)update:(NSTimeInterval)currentTime
+{
+    if (_gamePaused) {
         return;
     }
-    if (currentTime - _timeInterval > _updateInterval) {
-        _timeInterval = currentTime;
-        _tickCount++;
-        if (_tickCount > 40) {
-            _tickCount = 40;
-        }
-        _updateInterval = 0.5 - 0.05*(_tickCount/10);
+    _firstNumber++;
+    NSLog(@"%d",_firstNumber);
+    if ( _firstNumber  > 15)
+    {
+        NSLog(@"inside");
+        _firstNumber = 0;
+        
         SKSpriteNode* phoneNode = [self createPhoneNode:rand()%2];
         [phoneNode setScale:0.5f];
         phoneNode.position = CGPointMake(self.size.width + 32, self.size.height/2);
         [self addChild:phoneNode];
+        [actionNodeArr addObject:phoneNode];
         [phoneNode runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:_animationTime] completion:^{
+            NSLog(@"animation finish");
             [phoneNode removeFromParent];
             [self showGameResult];
+            [actionNodeArr removeObject:phoneNode];
         }];
     }
 }
+
+
+//-(void)update:(CFTimeInterval)currentTime {
+//    /* Called before each frame is rendered */
+//    //NSLog(@"%f",currentTime);
+//    if (_timeInterval == 0) {
+//        _timeInterval = currentTime;
+//        return;
+//    }
+//    if (currentTime - _timeInterval > _updateInterval) {
+//        NSLog(@"%f",_updateInterval);
+//        _timeInterval = currentTime;
+//        _tickCount++;
+//        if (_tickCount > 40) {
+//            _tickCount = 40;
+//        }
+//        _updateInterval = 0.5 - 0.05*(_tickCount/10);
+//        SKSpriteNode* phoneNode = [self createPhoneNode:rand()%2];
+//        [phoneNode setScale:0.5f];
+//        phoneNode.position = CGPointMake(self.size.width + 32, self.size.height/2);
+//        [self addChild:phoneNode];
+//        [phoneNode runAction:[SKAction moveTo:CGPointMake(-32, self.size.height/2) duration:_animationTime] completion:^{
+//            NSLog(@"animation finish");
+//            [phoneNode removeFromParent];
+//            [self showGameResult];
+//        }];
+//    }
+//}
 
 - (SKSpriteNode*)createPhoneNode:(int)phonetype {
     NSString* phoneName = nil;
@@ -183,13 +258,13 @@
             phoneName = @"iphone";
             break;
     }
-    SKSpriteNode* spriteNode =  [SKSpriteNode spriteNodeWithImageNamed:phoneName];
+    SKSpriteNode* spriteNode =  [SKSpriteNode spriteNodeWithImageNamed:@"iphone"];
     spriteNode.userData = [NSMutableDictionary dictionaryWithDictionary:@{@"type":@(phonetype)}];
     return spriteNode;
 }
 
 - (void)showGameResult {
-    NSLog(@"game over");
+    //NSLog(@"game over");
 }
 
 @end
