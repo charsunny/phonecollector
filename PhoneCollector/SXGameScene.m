@@ -71,11 +71,6 @@
         _surfaceNode.lineWidth = 1.0;
         _surfaceNode.strokeColor = [SKColor orangeColor];
         _surfaceNode.name = @"surface";
-        
-        SKSpriteNode* backgroundNode= [[SKSpriteNode alloc]initWithImageNamed:@"PauseBackground"];
-        backgroundNode.anchorPoint = CGPointMake(0, 0);
-        //[_surfaceNode addChild:backgroundNode];
-
         [self addChild:_surfaceNode];
         
         SKLabelNode* scoreLabel = [SKLabelNode node];
@@ -85,6 +80,12 @@
         [scoreLabel setFontSize:40];
         [scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height - 60)];
         [_surfaceNode addChild:scoreLabel];
+        
+        SKSpriteNode* dustbin = [[SKSpriteNode alloc]initWithImageNamed:@"Dustbin"];
+        dustbin.name = @"dustbin";
+        //dustbin.size
+        dustbin.position = CGPointMake(self.size.width / 2,30);
+        [_surfaceNode addChild:dustbin];
         
         actionNodeArr = [[NSMutableArray alloc]init];
     }
@@ -220,6 +221,8 @@
         if ([moveNode.userData[@"type"] intValue] == 0) {
             [self showGameResult];
         }
+        SKAction* sequenceAction = [SKAction sequence:@[[SKAction scaleTo:1.2 duration:0.15],[SKAction scaleTo:1 duration:0.1]]];
+        [[_surfaceNode childNodeWithName:@"dustbin"] runAction:sequenceAction];
     }];
 }
 
