@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "iphone_small-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "iphone.png"
+      "filename" : "iphone_small.png"
     }
   ],
   "info" : {

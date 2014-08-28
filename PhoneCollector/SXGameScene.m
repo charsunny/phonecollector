@@ -27,7 +27,7 @@
 
 @property (assign, nonatomic) int score;
 //Game Control View
-@property (strong,nonatomic)SKShapeNode* pauseBtnNode;
+@property (strong,nonatomic)SKSpriteNode* pauseBtnNode;
 
 @property (strong,nonatomic)SXGamePauseView* pauseView;
 
@@ -52,7 +52,8 @@
         
         _firstNumber = 0;
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.backgroundColor = [UIColor orangeColor];
         _surfaceNode = [SKShapeNode node];
         CGPathRef path = CGPathCreateWithRect(self.frame, nil);
         _surfaceNode.path = path;
@@ -120,10 +121,10 @@
 
 - (void)initGameControlView
 {
-    _pauseBtnNode= [SKShapeNode node];
-    _pauseBtnNode.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(20, 20, 20, 20) cornerRadius:4].CGPath;
-    _pauseBtnNode.strokeColor = [SKColor redColor];
-    _pauseBtnNode.fillColor = [SKColor blueColor];
+    _pauseBtnNode = [[SKSpriteNode alloc]initWithImageNamed:@"Pause"];
+    _pauseBtnNode.anchorPoint = CGPointMake(0, 0);
+    _pauseBtnNode.size = CGSizeMake(25, 25);
+    _pauseBtnNode.position = CGPointMake(10 , 10);
     _pauseBtnNode.name = @"pauseNode";
     [_surfaceNode addChild:_pauseBtnNode];
     
