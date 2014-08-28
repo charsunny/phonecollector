@@ -42,13 +42,20 @@
     NSMutableArray* actionNodeArr;
 }
 
+- (void)setScore:(int)score
+{
+    _score = score;
+    SKLabelNode* label = (SKLabelNode*)[_surfaceNode childNodeWithName:@"score"];
+    [label setText:[NSString stringWithFormat:@"%d", _score]];
+}
+
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
         _animationTime = 1.0;
         _updateInterval = 0.5;
-        _score = 0;
+        self.score = 0;
         
         _firstNumber = 0;
         
@@ -128,17 +135,31 @@
     _pauseBtnNode.name = @"pauseNode";
     [_surfaceNode addChild:_pauseBtnNode];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(resumeGame) name:@"cmd" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(handlePauseViewCmd:) name:@"cmd" object:nil];
     
 }
-- (void)resumeGame
+- (void)handlePauseViewCmd:(NSNotification*)notificator
 {
-    [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        ((SKSpriteNode*)actionNodeArr[idx]).paused = NO;
-    }];
-    _gamePaused = NO;
-    [_pauseView removeFromSuperview];
+    NSDictionary* dic = notificator.userInfo;
+    NSString* cmd = dic[@"cmd"];
+    if ([cmd isEqualToString:@"restart"]) {
+        self.score = 0;
+        [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [((SKSpriteNode*)actionNodeArr[idx])removeFromParent];
+        }];
+        [actionNodeArr removeAllObjects];
+        [_pauseView removeFromSuperview];
+        _gamePaused = NO;
+    }
+    else if ([cmd isEqualToString:@"resume"]){
+        [actionNodeArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            ((SKSpriteNode*)actionNodeArr[idx]).paused = NO;
+        }];
+        _gamePaused = NO;
+        [_pauseView removeFromSuperview];
+    }
 }
+
 
 - (void)willMoveFromView:(SKView *)view {
     [view removeGestureRecognizer:_swipeUp];
@@ -146,7 +167,7 @@
 }
 
 - (void)onSwipeUp:(UISwipeGestureRecognizer*)recognizer {
-    if ([self children].count <= 1) {
+    if ([self children].count <= 1 || _gamePaused) {
         return;
     }
     SKNode* node = [self children][1];
@@ -163,9 +184,7 @@
     [moveNode runAction:[SKAction moveTo:CGPointMake(self.size.width/2, self.size.height - 100) duration:0.3f] completion:^{
         [moveNode removeFromParent];
         if ([moveNode.userData[@"type"] intValue] == 0) {
-            _score++;
-            SKLabelNode* label = (SKLabelNode*)[_surfaceNode childNodeWithName:@"score"];
-            [label setText:[NSString stringWithFormat:@"%d", _score]];
+            self.score++;
         } else {
             [self showGameResult];
         }
@@ -174,7 +193,7 @@
 }
 
 - (void)onSwipeDown:(UISwipeGestureRecognizer*)recognizer {
-    if ([self children].count <= 1) {
+    if ([self children].count <= 1 || _gamePaused) {
         return;
     }
     SKNode* node = [self children][1];

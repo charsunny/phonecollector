@@ -28,6 +28,8 @@
     button.titleLabel.adjustsFontSizeToFitWidth = YES;
     SEL selector = NSSelectorFromString([NSString stringWithFormat:@"handle%@:",button.titleLabel.text]);
     [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    button.titleLabel.alpha = 0;
+    [button setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@",button.titleLabel.text]] forState:UIControlStateNormal];
     [self addSubview:button];
 }
 - (void)initUI
@@ -46,10 +48,10 @@
     [self configureButton:resumeBtn];
     
     //home
-    UIButton* homeBtn = [[UIButton alloc]initWithFrame:CGRectMake(BTN_WIDTH*2 + 10, f.size.height / 2, BTN_WIDTH, BTN_WIDTH)];
-    homeBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [homeBtn setTitle:@"Home" forState:UIControlStateNormal];
-    [self configureButton:homeBtn];
+//    UIButton* homeBtn = [[UIButton alloc]initWithFrame:CGRectMake(BTN_WIDTH*2 + 10, f.size.height / 2, BTN_WIDTH, BTN_WIDTH)];
+//    homeBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+//    [homeBtn setTitle:@"Home" forState:UIControlStateNormal];
+//    [self configureButton:homeBtn];
     
     //voice
 }
@@ -64,7 +66,10 @@
 
 - (void)handleResume:(UIButton*)button
 {
-    NSLog(@"Resuem");
+    NSLog(@"Resume");
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{
+                                                                                            @"cmd":@"resume"
+                                                                                            }];
 }
 
 - (void)handleHome:(UIButton*)button
