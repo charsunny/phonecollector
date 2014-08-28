@@ -10,7 +10,7 @@
 #import "SXGameScene.h"
 
 
-#define TRANSITION_TIME_INTERVAL 0.3
+#define TRANSITION_TIME_INTERVAL 0.6
 
 @interface SXGameMenuScene()
 
@@ -32,7 +32,7 @@
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         
-        self.backgroundColor = [UIColor orangeColor];
+        self.backgroundColor = UIColorFromRGB(0x7ED321);
         
         SKLabelNode* startLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
         [startLabel setText:@"Start"];

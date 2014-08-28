@@ -48,10 +48,10 @@
     [self configureButton:resumeBtn];
     
     //home
-//    UIButton* homeBtn = [[UIButton alloc]initWithFrame:CGRectMake(BTN_WIDTH*2 + 10, f.size.height / 2, BTN_WIDTH, BTN_WIDTH)];
-//    homeBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-//    [homeBtn setTitle:@"Home" forState:UIControlStateNormal];
-//    [self configureButton:homeBtn];
+    UIButton* homeBtn = [[UIButton alloc]initWithFrame:CGRectMake(BTN_WIDTH*2 + 10, f.size.height / 2, BTN_WIDTH, BTN_WIDTH)];
+    homeBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    [homeBtn setTitle:@"Home" forState:UIControlStateNormal];
+    [self configureButton:homeBtn];
     
     //voice
 }
@@ -59,21 +59,18 @@
 - (void)handleRestart:(UIButton*)button
 {
     NSLog(@"Restart");
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{
-                                                                                            @"cmd":@"restart"
-                                                                                            }];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{ @"cmd":@"restart" }];
 }
 
 - (void)handleResume:(UIButton*)button
 {
     NSLog(@"Resume");
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{
-                                                                                            @"cmd":@"resume"
-                                                                                            }];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{ @"cmd":@"resume" }];
 }
 
 - (void)handleHome:(UIButton*)button
 {
     NSLog(@"Home");
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"cmd" object:self userInfo:@{ @"cmd":@"home" }];
 }
 @end

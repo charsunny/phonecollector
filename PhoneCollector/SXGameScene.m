@@ -8,6 +8,8 @@
 
 #import "SXGameScene.h"
 #import "SXGamePauseView.h"
+#import "SXGameMenuScene.h"
+
 
 @interface SXGameScene()
 
@@ -60,7 +62,7 @@
         _firstNumber = 0;
         
         //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        self.backgroundColor = [UIColor orangeColor];
+        self.backgroundColor = UIColorFromRGB(0xFFAB21);
         _surfaceNode = [SKShapeNode node];
         CGPathRef path = CGPathCreateWithRect(self.frame, nil);
         _surfaceNode.path = path;
@@ -157,6 +159,16 @@
         }];
         _gamePaused = NO;
         [_pauseView removeFromSuperview];
+    }
+    else if ([cmd isEqualToString:@"home"])
+    {
+        [_pauseView removeFromSuperview];
+        SKTransition* transition = [SKTransition doorsCloseVerticalWithDuration:0.6];
+        
+        SKScene * scene = [SXGameMenuScene sceneWithSize:self.frame.size];
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        
+        [self.scene.view presentScene:scene transition:transition];
     }
 }
 
