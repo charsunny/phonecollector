@@ -8,6 +8,7 @@
 
 #import "SXAppDelegate.h"
 @import GameKit;
+@import SpriteKit;
 #import "WXApi.h"
 #import "WeiboSDK.h"
 

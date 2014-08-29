@@ -7,7 +7,7 @@
 //
 
 #import "SXViewController.h"
-#import "SXGameMenuScene.h"
+#import "SXGameScene.h"
 
 @implementation SXViewController
 
@@ -24,7 +24,7 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [SXGameMenuScene sceneWithSize:skView.bounds.size];
+    SKScene * scene = [SXGameScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.

@@ -94,12 +94,18 @@
     _surfaceNode.name = @"surface";
     [self addChild:_surfaceNode];
     
-    SKSpriteNode* topSprite = [SKSpriteNode spriteNodeWithColor:UIColorFromRGB(_colorScheme?0x4DC9FD:0x333333) size:CGSizeMake(self.size.width, (self.size.height - 140)/2)];
-    topSprite.position = CGPointMake(self.size.width/2, 3*self.size.height/4+35);
+    float midWidth = 300;
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        midWidth = 140;
+    }
+    
+    SKSpriteNode* topSprite = [SKSpriteNode spriteNodeWithColor:UIColorFromRGB(_colorScheme?0x4DC9FD:0x333333) size:CGSizeMake(self.size.width, (self.size.height - midWidth)/2)];
+    topSprite.position = CGPointMake(self.size.width/2, 3*self.size.height/4+midWidth/4);
     [_surfaceNode addChild:topSprite];
     
-    SKSpriteNode* bottomSprite = [SKSpriteNode spriteNodeWithColor:UIColorFromRGB(_colorScheme?0x00CE61:0x333333) size:CGSizeMake(self.size.width, (self.size.height - 140)/2)];
-    bottomSprite.position = CGPointMake(self.size.width/2, self.size.height/4 - 35);
+    SKSpriteNode* bottomSprite = [SKSpriteNode spriteNodeWithColor:UIColorFromRGB(_colorScheme?0x00CE61:0x333333) size:CGSizeMake(self.size.width, (self.size.height - midWidth)/2)];
+    bottomSprite.position = CGPointMake(self.size.width/2, self.size.height/4 - midWidth/4);
     [_surfaceNode addChild:bottomSprite];
 
     
