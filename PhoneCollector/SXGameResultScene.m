@@ -26,7 +26,7 @@
 
 @property (strong, nonatomic) SKLabelNode* bestNode;
 
-@property (strong, nonatomic) SKLabelNode* resultTitleNode;
+@property (strong, nonatomic) SKLabelNode* titleNode;
 
 @end
 
@@ -42,31 +42,25 @@
             scaleFactor = 1.0f;
         }
         
-        SKLabelNode* gameoverLabel = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
-        [gameoverLabel setText:@"Game Over"];
-        gameoverLabel.fontSize = 40;
-        gameoverLabel.position = CGPointMake(self.size.width/2, self.size.height*5/6 );
-        [self addChild:gameoverLabel];
-        
-        SKSpriteNode* restartNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Restart"] size:CGSizeMake(50, 50)];
-        restartNode.name = @"restart";
-        restartNode.position = CGPointMake(self.size.width/2, 5*self.size.height/6 - 50);
-        [self addChild:restartNode];
-
-        
-        _resultTitleNode = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
-        [_resultTitleNode setText:@"Score"];
-        _resultTitleNode.fontSize = 30;
-        _resultTitleNode.position = CGPointMake(self.size.width/2, self.size.height/2 + 60);
-        [self addChild:_resultTitleNode];
+        _titleNode = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
+        [_titleNode setText:@"Game Over"];
+        _titleNode.fontSize = 40;
+        _titleNode.position = CGPointMake(self.size.width/2, self.size.height*5/6 );
+        [self addChild:_titleNode];
         
         _resultNode = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
-        _resultNode.position = CGPointMake(self.size.width/2, self.size.height/2);
+        _resultNode.position = CGPointMake(self.size.width/2, self.size.height/2+ 80);
+        _resultNode.fontSize = 30;
         [self addChild:_resultNode];
+        
+        SKSpriteNode* restartNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Restart"] size:CGSizeMake(60, 60)];
+        restartNode.name = @"restart";
+        restartNode.position = CGPointMake(self.size.width/2, self.size.height/2);
+        [self addChild:restartNode];
         
         _bestNode = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
         _bestNode.fontSize = 30;
-        _bestNode.position  = CGPointMake(self.size.width/2, self.size.height/2 - 60);
+        _bestNode.position  = CGPointMake(self.size.width/2, self.size.height/2 - 80);
         [self addChild:_bestNode];
         
         SKSpriteNode* homeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Home"] size:CGSizeMake(40, 40)];
@@ -84,9 +78,9 @@
         shareNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/6);
         [self addChild:shareNode];
         
-        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Unlock"] size:CGSizeMake(40, 40)];
+        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RemoveAds"] size:CGSizeMake(170, 50)];
         upgradeNode.name = @"upgrade";
-        upgradeNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/2 - 150);
+        upgradeNode.position = CGPointMake(self.size.width/2, 10);
         [self addChild:upgradeNode];
         
     }
@@ -116,13 +110,18 @@
 - (void)didMoveToView:(SKView *)view
 {
     if (self.score > self.bestScore) {
-        [_resultTitleNode setText:@"New Best Score!"];
+        [_titleNode setText:@"New Record!"];
         self.bestScore = self.score;
         GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:@"best_score"];
         scoreReporter.value = _score;
         [GKScore reportScores:@[scoreReporter] withCompletionHandler:nil];
+        [_resultNode runAction:[SKAction playSoundFileNamed:@"success_playful_08.mp3" waitForCompletion:NO] completion:nil];
     }
-    [_resultNode setText:[NSString stringWithFormat:@"%ld",(long)_score]];
+    else
+    {
+        [_resultNode runAction:[SKAction playSoundFileNamed:@"horn_lose_02.mp3" waitForCompletion:NO] completion:nil];
+    }
+    [_resultNode setText:[NSString stringWithFormat:@"Score %ld",(long)_score]];
     [_bestNode setText:[NSString stringWithFormat:@"Best %ld", (long)self.bestScore]];
     [self initBannerView];
 }

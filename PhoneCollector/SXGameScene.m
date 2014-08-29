@@ -124,7 +124,7 @@
     
     SKSpriteNode* dustbin = [[SKSpriteNode alloc]initWithImageNamed:@"Dustbin"];
     dustbin.name = @"dustbin";
-    dustbin.position = CGPointMake(self.size.width / 2,30);
+    dustbin.position = CGPointMake(self.size.width / 2,60);
     [_surfaceNode addChild:dustbin];
     
     

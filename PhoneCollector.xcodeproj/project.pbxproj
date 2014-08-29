@@ -22,20 +22,11 @@
 		509F585719ADAD92001C0D8F /* SXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F585619ADAD92001C0D8F /* SXViewController.m */; };
 		509F585A19ADAD92001C0D8F /* SXGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 509F585919ADAD92001C0D8F /* SXGameScene.m */; };
 		509F585E19ADAD92001C0D8F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 509F585D19ADAD92001C0D8F /* Images.xcassets */; };
-		50FF4A6E19B05FEC003BC1B8 /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6619B05FEC003BC1B8 /* Icon-60.png */; };
-		50FF4A6F19B05FEC003BC1B8 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6719B05FEC003BC1B8 /* Icon-60@2x.png */; };
-		50FF4A7019B05FEC003BC1B8 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6819B05FEC003BC1B8 /* Icon-76.png */; };
-		50FF4A7119B05FEC003BC1B8 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6919B05FEC003BC1B8 /* Icon-76@2x.png */; };
-		50FF4A7219B05FEC003BC1B8 /* Icon-Small-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6A19B05FEC003BC1B8 /* Icon-Small-40.png */; };
-		50FF4A7319B05FEC003BC1B8 /* Icon-Small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6B19B05FEC003BC1B8 /* Icon-Small-40@2x.png */; };
-		50FF4A7419B05FEC003BC1B8 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6C19B05FEC003BC1B8 /* Icon-Small.png */; };
-		50FF4A7519B05FEC003BC1B8 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6D19B05FEC003BC1B8 /* Icon-Small@2x.png */; };
+		9D05C08919B0794C00864708 /* horn_lose_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D05C08719B0794C00864708 /* horn_lose_02.mp3 */; };
+		9D05C08A19B0794C00864708 /* success_playful_08.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D05C08819B0794C00864708 /* success_playful_08.mp3 */; };
 		9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */; };
 		9D3A42C319ADB9F50024FB5D /* SXGameResultScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42C219ADB9F50024FB5D /* SXGameResultScene.m */; };
 		9D3A42D819AEC3390024FB5D /* SXGamePauseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */; };
-		9DBAACF319B06EB100718A72 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DBAACF019B06EB100718A72 /* launch.png */; };
-		9DBAACF419B06EB100718A72 /* launchiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DBAACF119B06EB100718A72 /* launchiPad.png */; };
-		9DBAACF519B06EB100718A72 /* launchR4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DBAACF219B06EB100718A72 /* launchR4.png */; };
 		9DFD074519AF4CF4009E35A4 /* SXGameBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFD074419AF4CF4009E35A4 /* SXGameBannerView.m */; };
 		9DFD075819AF4DD9009E35A4 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFD075619AF4DD9009E35A4 /* libGoogleAdMobAds.a */; };
 		9DFD075919AF4DD9009E35A4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9DFD075719AF4DD9009E35A4 /* README.txt */; };
@@ -80,23 +71,14 @@
 		509F586C19ADAD92001C0D8F /* PhoneCollectorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhoneCollectorTests-Info.plist"; sourceTree = "<group>"; };
 		509F586E19ADAD92001C0D8F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		509F587019ADAD92001C0D8F /* PhoneCollectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhoneCollectorTests.m; sourceTree = "<group>"; };
-		50FF4A6619B05FEC003BC1B8 /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60.png"; path = "res/Icon-60.png"; sourceTree = SOURCE_ROOT; };
-		50FF4A6719B05FEC003BC1B8 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@2x.png"; path = "res/Icon-60@2x.png"; sourceTree = SOURCE_ROOT; };
-		50FF4A6819B05FEC003BC1B8 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76.png"; path = "res/Icon-76.png"; sourceTree = SOURCE_ROOT; };
-		50FF4A6919B05FEC003BC1B8 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-76@2x.png"; path = "res/Icon-76@2x.png"; sourceTree = SOURCE_ROOT; };
-		50FF4A6A19B05FEC003BC1B8 /* Icon-Small-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-40.png"; path = "res/Icon-Small-40.png"; sourceTree = SOURCE_ROOT; };
-		50FF4A6B19B05FEC003BC1B8 /* Icon-Small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-40@2x.png"; path = "res/Icon-Small-40@2x.png"; sourceTree = SOURCE_ROOT; };
-		50FF4A6C19B05FEC003BC1B8 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "res/Icon-Small.png"; sourceTree = SOURCE_ROOT; };
-		50FF4A6D19B05FEC003BC1B8 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "res/Icon-Small@2x.png"; sourceTree = SOURCE_ROOT; };
+		9D05C08719B0794C00864708 /* horn_lose_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horn_lose_02.mp3; sourceTree = "<group>"; };
+		9D05C08819B0794C00864708 /* success_playful_08.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success_playful_08.mp3; sourceTree = "<group>"; };
 		9D3A42BE19ADB2BA0024FB5D /* SXGameMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameMenuScene.h; sourceTree = "<group>"; };
 		9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameMenuScene.m; sourceTree = "<group>"; };
 		9D3A42C119ADB9F50024FB5D /* SXGameResultScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameResultScene.h; sourceTree = "<group>"; };
 		9D3A42C219ADB9F50024FB5D /* SXGameResultScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameResultScene.m; sourceTree = "<group>"; };
 		9D3A42D619AEC3390024FB5D /* SXGamePauseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGamePauseView.h; sourceTree = "<group>"; };
 		9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGamePauseView.m; sourceTree = "<group>"; };
-		9DBAACF019B06EB100718A72 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
-		9DBAACF119B06EB100718A72 /* launchiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchiPad.png; sourceTree = "<group>"; };
-		9DBAACF219B06EB100718A72 /* launchR4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchR4.png; sourceTree = "<group>"; };
 		9DFD074319AF4CF4009E35A4 /* SXGameBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameBannerView.h; sourceTree = "<group>"; };
 		9DFD074419AF4CF4009E35A4 /* SXGameBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameBannerView.m; sourceTree = "<group>"; };
 		9DFD074A19AF4DD9009E35A4 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
@@ -243,17 +225,8 @@
 		509F584719ADAD92001C0D8F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9DBAACF019B06EB100718A72 /* launch.png */,
-				9DBAACF119B06EB100718A72 /* launchiPad.png */,
-				9DBAACF219B06EB100718A72 /* launchR4.png */,
-				50FF4A6619B05FEC003BC1B8 /* Icon-60.png */,
-				50FF4A6719B05FEC003BC1B8 /* Icon-60@2x.png */,
-				50FF4A6819B05FEC003BC1B8 /* Icon-76.png */,
-				50FF4A6919B05FEC003BC1B8 /* Icon-76@2x.png */,
-				50FF4A6A19B05FEC003BC1B8 /* Icon-Small-40.png */,
-				50FF4A6B19B05FEC003BC1B8 /* Icon-Small-40@2x.png */,
-				50FF4A6C19B05FEC003BC1B8 /* Icon-Small.png */,
-				50FF4A6D19B05FEC003BC1B8 /* Icon-Small@2x.png */,
+				9D05C08719B0794C00864708 /* horn_lose_02.mp3 */,
+				9D05C08819B0794C00864708 /* success_playful_08.mp3 */,
 				9DFD079D19B02817009E35A4 /* pop1a.mp3 */,
 				9DFD079E19B02817009E35A4 /* pop2b.mp3 */,
 				509F585219ADAD92001C0D8F /* Main.storyboard */,
@@ -379,25 +352,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DBAACF419B06EB100718A72 /* launchiPad.png in Resources */,
+				9D05C08919B0794C00864708 /* horn_lose_02.mp3 in Resources */,
 				509F584B19ADAD92001C0D8F /* InfoPlist.strings in Resources */,
-				50FF4A6F19B05FEC003BC1B8 /* Icon-60@2x.png in Resources */,
 				509F585E19ADAD92001C0D8F /* Images.xcassets in Resources */,
-				50FF4A7319B05FEC003BC1B8 /* Icon-Small-40@2x.png in Resources */,
-				9DBAACF319B06EB100718A72 /* launch.png in Resources */,
 				9DFD07A019B02817009E35A4 /* pop2b.mp3 in Resources */,
 				509F585419ADAD92001C0D8F /* Main.storyboard in Resources */,
+				9D05C08A19B0794C00864708 /* success_playful_08.mp3 in Resources */,
 				500E1ADF19ADD082000541CC /* buttonclick.mp3 in Resources */,
-				50FF4A7019B05FEC003BC1B8 /* Icon-76.png in Resources */,
-				50FF4A7419B05FEC003BC1B8 /* Icon-Small.png in Resources */,
-				50FF4A6E19B05FEC003BC1B8 /* Icon-60.png in Resources */,
-				9DBAACF519B06EB100718A72 /* launchR4.png in Resources */,
 				9DFD075919AF4DD9009E35A4 /* README.txt in Resources */,
 				9DFD079F19B02817009E35A4 /* pop1a.mp3 in Resources */,
-				50FF4A7119B05FEC003BC1B8 /* Icon-76@2x.png in Resources */,
-				50FF4A7519B05FEC003BC1B8 /* Icon-Small@2x.png in Resources */,
 				504081EB19AF579600579841 /* WeiboSDK.bundle in Resources */,
-				50FF4A7219B05FEC003BC1B8 /* Icon-Small-40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +486,8 @@
 		509F587519ADAD92001C0D8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -546,6 +512,8 @@
 		509F587619ADAD92001C0D8F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
