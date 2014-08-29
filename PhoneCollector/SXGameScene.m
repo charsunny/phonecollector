@@ -52,6 +52,10 @@
     [label setText:[NSString stringWithFormat:@"%d", _score]];
     SKAction* sequenceAction = [SKAction sequence:@[[SKAction scaleTo:1.2 duration:0.15],[SKAction scaleTo:1 duration:0.1]]];
     [label runAction:sequenceAction];
+    
+    SKSpriteNode* present = (SKSpriteNode*)[_surfaceNode childNodeWithName:@"present"];
+    [present runAction:sequenceAction];
+    
 }
 
 -(id)initWithSize:(CGSize)size {
@@ -98,19 +102,24 @@
     [_surfaceNode addChild:bottomSprite];
 
     
+    SKSpriteNode* present = [[SKSpriteNode alloc]initWithImageNamed:@"Present"];
+    present.name = @"present";
+    present.position = CGPointMake(self.size.width / 2, self.size.height - 70);
+    [_surfaceNode addChild:present];
+    
     SKLabelNode* scoreLabel = [SKLabelNode node];
     [scoreLabel setText:[NSString stringWithFormat:@"%d", _score]];
     [scoreLabel setName:@"score"];
     [scoreLabel setFontName:GAME_FONT];
-    [scoreLabel setFontSize:40];
-    [scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height - 60)];
+    [scoreLabel setFontSize:60];
+    [scoreLabel setPosition:CGPointMake(self.size.width/2, self.size.height - 112)];
     [_surfaceNode addChild:scoreLabel];
     
     SKSpriteNode* dustbin = [[SKSpriteNode alloc]initWithImageNamed:@"Dustbin"];
     dustbin.name = @"dustbin";
-    //dustbin.size
     dustbin.position = CGPointMake(self.size.width / 2,30);
     [_surfaceNode addChild:dustbin];
+    
     
     _pauseBtnNode = [[SKSpriteNode alloc]initWithImageNamed:@"Pause"];
     _pauseBtnNode.anchorPoint = CGPointMake(0, 0);
