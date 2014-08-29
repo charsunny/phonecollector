@@ -14,16 +14,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    SKView * skView = (SKView *)self.view;
-    //    skView.showsFPS = YES;
-    //    skView.showsNodeCount = YES;
-    
-    // Create and configure the scene.
-    SKScene * scene = [SXGameScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
-    // Present the scene.
-    [skView presentScene:scene];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        SKView * skView = (SKView *)self.view;
+        SKScene * scene = [SXGameScene sceneWithSize:skView.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        [skView presentScene:scene];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        SKView * skView = (SKView *)self.view;
+        SKScene * scene = [SXGameScene sceneWithSize:skView.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        [skView presentScene:scene];
+    }
 }
 
 - (BOOL)shouldAutorotate
