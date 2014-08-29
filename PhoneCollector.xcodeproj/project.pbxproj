@@ -25,6 +25,11 @@
 		50FF4A8319B0A358003BC1B8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A8119B0A358003BC1B8 /* Localizable.strings */; };
 		9D05C08919B0794C00864708 /* horn_lose_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D05C08719B0794C00864708 /* horn_lose_02.mp3 */; };
 		9D05C08A19B0794C00864708 /* success_playful_08.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D05C08819B0794C00864708 /* success_playful_08.mp3 */; };
+		9D05C09719B0D24C00864708 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D05C09619B0D24C00864708 /* CoreData.framework */; };
+		9D05C09919B0D25B00864708 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D05C09819B0D25B00864708 /* libz.dylib */; };
+		9D05C09C19B0D54300864708 /* SXLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05C09B19B0D54300864708 /* SXLogger.m */; };
+		9D05C0B519B0D77F00864708 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D05C0B419B0D77F00864708 /* libGoogleAnalyticsServices.a */; };
+		9D05C0BA19B0D7CB00864708 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D05C0B919B0D7CB00864708 /* libsqlite3.dylib */; };
 		9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */; };
 		9D3A42C319ADB9F50024FB5D /* SXGameResultScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42C219ADB9F50024FB5D /* SXGameResultScene.m */; };
 		9D3A42D819AEC3390024FB5D /* SXGamePauseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */; };
@@ -76,6 +81,22 @@
 		50FF4A8419B0A3AD003BC1B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9D05C08719B0794C00864708 /* horn_lose_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horn_lose_02.mp3; sourceTree = "<group>"; };
 		9D05C08819B0794C00864708 /* success_playful_08.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success_playful_08.mp3; sourceTree = "<group>"; };
+		9D05C09619B0D24C00864708 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		9D05C09819B0D25B00864708 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9D05C09A19B0D54300864708 /* SXLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXLogger.h; sourceTree = "<group>"; };
+		9D05C09B19B0D54300864708 /* SXLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXLogger.m; sourceTree = "<group>"; };
+		9D05C0AA19B0D73200864708 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		9D05C0AB19B0D73200864708 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		9D05C0AC19B0D73200864708 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		9D05C0AD19B0D73200864708 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		9D05C0AE19B0D73200864708 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		9D05C0AF19B0D73200864708 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		9D05C0B019B0D73200864708 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		9D05C0B119B0D73200864708 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		9D05C0B219B0D73200864708 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		9D05C0B319B0D73200864708 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		9D05C0B419B0D77F00864708 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		9D05C0B919B0D7CB00864708 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		9D3A42BE19ADB2BA0024FB5D /* SXGameMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameMenuScene.h; sourceTree = "<group>"; };
 		9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameMenuScene.m; sourceTree = "<group>"; };
 		9D3A42C119ADB9F50024FB5D /* SXGameResultScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameResultScene.h; sourceTree = "<group>"; };
@@ -115,6 +136,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D05C0BA19B0D7CB00864708 /* libsqlite3.dylib in Frameworks */,
+				9D05C09919B0D25B00864708 /* libz.dylib in Frameworks */,
+				9D05C09719B0D24C00864708 /* CoreData.framework in Frameworks */,
 				9DFD076819AF4E41009E35A4 /* SystemConfiguration.framework in Frameworks */,
 				9DFD076619AF4E3A009E35A4 /* StoreKit.framework in Frameworks */,
 				9DFD076419AF4E35009E35A4 /* MessageUI.framework in Frameworks */,
@@ -124,6 +148,7 @@
 				9DFD076019AF4E28009E35A4 /* AVFoundation.framework in Frameworks */,
 				9DFD075E19AF4E22009E35A4 /* AudioToolbox.framework in Frameworks */,
 				9DFD075C19AF4E1C009E35A4 /* AdSupport.framework in Frameworks */,
+				9D05C0B519B0D77F00864708 /* libGoogleAnalyticsServices.a in Frameworks */,
 				509F584119ADAD92001C0D8F /* CoreGraphics.framework in Frameworks */,
 				509F584319ADAD92001C0D8F /* UIKit.framework in Frameworks */,
 				509F584519ADAD92001C0D8F /* SpriteKit.framework in Frameworks */,
@@ -166,6 +191,7 @@
 		509F583219ADAD92001C0D8F = {
 			isa = PBXGroup;
 			children = (
+				9D05C0A919B0D73200864708 /* Google Analyze */,
 				509F584619ADAD92001C0D8F /* PhoneCollector */,
 				509F586A19ADAD92001C0D8F /* PhoneCollectorTests */,
 				509F583D19ADAD92001C0D8F /* Frameworks */,
@@ -184,6 +210,9 @@
 		509F583D19ADAD92001C0D8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9D05C0B919B0D7CB00864708 /* libsqlite3.dylib */,
+				9D05C09819B0D25B00864708 /* libz.dylib */,
+				9D05C09619B0D24C00864708 /* CoreData.framework */,
 				9DFD076919AF4ED6009E35A4 /* GameKit.framework */,
 				9DFD076719AF4E41009E35A4 /* SystemConfiguration.framework */,
 				9DFD076519AF4E3A009E35A4 /* StoreKit.framework */,
@@ -209,6 +238,7 @@
 				9DFD075A19AF4DDF009E35A4 /* Google Ads */,
 				504081E119AF398400579841 /* iPad */,
 				9D3A42D919AEC3400024FB5D /* View */,
+				9D05C09D19B0D54800864708 /* Util */,
 				509F584F19ADAD92001C0D8F /* SXAppDelegate.h */,
 				509F585019ADAD92001C0D8F /* SXAppDelegate.m */,
 				509F585519ADAD92001C0D8F /* SXViewController.h */,
@@ -259,6 +289,34 @@
 				509F586D19ADAD92001C0D8F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9D05C09D19B0D54800864708 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				9D05C09A19B0D54300864708 /* SXLogger.h */,
+				9D05C09B19B0D54300864708 /* SXLogger.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		9D05C0A919B0D73200864708 /* Google Analyze */ = {
+			isa = PBXGroup;
+			children = (
+				9D05C0B419B0D77F00864708 /* libGoogleAnalyticsServices.a */,
+				9D05C0AA19B0D73200864708 /* GAI.h */,
+				9D05C0AB19B0D73200864708 /* GAIDictionaryBuilder.h */,
+				9D05C0AC19B0D73200864708 /* GAIEcommerceFields.h */,
+				9D05C0AD19B0D73200864708 /* GAIEcommerceProduct.h */,
+				9D05C0AE19B0D73200864708 /* GAIEcommerceProductAction.h */,
+				9D05C0AF19B0D73200864708 /* GAIEcommercePromotion.h */,
+				9D05C0B019B0D73200864708 /* GAIFields.h */,
+				9D05C0B119B0D73200864708 /* GAILogger.h */,
+				9D05C0B219B0D73200864708 /* GAITrackedViewController.h */,
+				9D05C0B319B0D73200864708 /* GAITracker.h */,
+			);
+			name = "Google Analyze";
+			path = Library;
 			sourceTree = "<group>";
 		};
 		9D3A42D919AEC3400024FB5D /* View */ = {
@@ -383,6 +441,7 @@
 				9D3A42C319ADB9F50024FB5D /* SXGameResultScene.m in Sources */,
 				9DFD074519AF4CF4009E35A4 /* SXGameBannerView.m in Sources */,
 				509F584D19ADAD92001C0D8F /* main.m in Sources */,
+				9D05C09C19B0D54300864708 /* SXLogger.m in Sources */,
 				9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */,
 				9D3A42D819AEC3390024FB5D /* SXGamePauseView.m in Sources */,
 				509F585119ADAD92001C0D8F /* SXAppDelegate.m in Sources */,
@@ -514,6 +573,7 @@
 					"$(PROJECT_DIR)/PhoneCollector",
 					"$(PROJECT_DIR)/PhoneCollector/libWeiboSDK",
 					"$(PROJECT_DIR)/PhoneCollector/WeChat",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -540,6 +600,7 @@
 					"$(PROJECT_DIR)/PhoneCollector",
 					"$(PROJECT_DIR)/PhoneCollector/libWeiboSDK",
 					"$(PROJECT_DIR)/PhoneCollector/WeChat",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

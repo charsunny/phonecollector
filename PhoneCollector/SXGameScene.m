@@ -11,6 +11,7 @@
 #import "SXGameMenuScene.h"
 #import "SXGameResultScene.h"
 #import "SXGameBannerView.h"
+#import "SXLogger.h"
 
 @interface SXGameScene()<SXGamePauseViewDelegate>
 {
@@ -312,6 +313,7 @@
     SXGameResultScene* scene = [SXGameResultScene sceneWithSize:self.frame.size];
     scene.score = self.score;
     [self.view presentScene:scene transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
+    [SXLogger logScore:self.score];
 }
 
 #pragma mark handle background events

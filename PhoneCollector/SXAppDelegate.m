@@ -11,9 +11,11 @@
 @import SpriteKit;
 #import "WXApi.h"
 #import "WeiboSDK.h"
+#import "GAI.h"
 
 #define AppKey_WeiXin               @"wxf04441074e0bff9c"
 #define AppKey_WeiBo                @"979020811"
+#define GoogleAnalyzeID             @"UA-54305347-1"
 
 @implementation SXAppDelegate
 
@@ -30,6 +32,18 @@
             }
         }];
     }
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:GoogleAnalyzeID];
+    
     return YES;
 }
 							

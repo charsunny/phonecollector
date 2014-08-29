@@ -12,6 +12,7 @@
 #import "SXGameBannerView.h"
 #import "WXApi.h"
 #import "WeiboSDK.h"
+#import "SXLogger.h"
 @import Social;
 @import GameKit;
 @import StoreKit;
@@ -168,6 +169,7 @@
         
     } else if ([_selectNode.name isEqualToString:@"restart"]) {
         [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition flipVerticalWithDuration:0.3f]];
+        [SXLogger logRestartGame];
     } else if([_selectNode.name isEqualToString:@"leaderboard"])
     {
         GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];

@@ -10,6 +10,7 @@
 #import "GADBannerView.h"
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <QuartzCore/QuartzCore.h>
+#import "SXLogger.h"
 
 
 #define UNIT_ID @"ca-app-pub-4119830468405392/4271828063"
@@ -60,6 +61,7 @@
             self.transform = CGAffineTransformMakeScale(1, 1);
             self.alpha = 1;
         } completion:^(BOOL finished) {
+            [SXLogger logShowAds];
         }];
     }
 }
@@ -92,6 +94,7 @@
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+        [SXLogger logCloseAds];
     }];
 }
 

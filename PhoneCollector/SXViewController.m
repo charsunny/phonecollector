@@ -8,8 +8,15 @@
 
 #import "SXViewController.h"
 #import "SXGameScene.h"
+#import "SXLogger.h"
 
 @implementation SXViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.screenName = @"Main Screen";
+}
 
 - (void)viewDidLoad
 {
@@ -19,6 +26,7 @@
         SKScene * scene = [SXGameScene sceneWithSize:skView.bounds.size];
         scene.scaleMode = SKSceneScaleModeAspectFill;
         [skView presentScene:scene];
+        [SXLogger logEnterGame];
     }
 }
 
