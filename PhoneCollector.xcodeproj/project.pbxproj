@@ -30,6 +30,8 @@
 		50FF4A7319B05FEC003BC1B8 /* Icon-Small-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6B19B05FEC003BC1B8 /* Icon-Small-40@2x.png */; };
 		50FF4A7419B05FEC003BC1B8 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6C19B05FEC003BC1B8 /* Icon-Small.png */; };
 		50FF4A7519B05FEC003BC1B8 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FF4A6D19B05FEC003BC1B8 /* Icon-Small@2x.png */; };
+		9D05C08919B0794C00864708 /* horn_lose_02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D05C08719B0794C00864708 /* horn_lose_02.mp3 */; };
+		9D05C08A19B0794C00864708 /* success_playful_08.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D05C08819B0794C00864708 /* success_playful_08.mp3 */; };
 		9D3A42C019ADB2BA0024FB5D /* SXGameMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */; };
 		9D3A42C319ADB9F50024FB5D /* SXGameResultScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42C219ADB9F50024FB5D /* SXGameResultScene.m */; };
 		9D3A42D819AEC3390024FB5D /* SXGamePauseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3A42D719AEC3390024FB5D /* SXGamePauseView.m */; };
@@ -88,6 +90,8 @@
 		50FF4A6B19B05FEC003BC1B8 /* Icon-Small-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-40@2x.png"; path = "res/Icon-Small-40@2x.png"; sourceTree = SOURCE_ROOT; };
 		50FF4A6C19B05FEC003BC1B8 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "res/Icon-Small.png"; sourceTree = SOURCE_ROOT; };
 		50FF4A6D19B05FEC003BC1B8 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "res/Icon-Small@2x.png"; sourceTree = SOURCE_ROOT; };
+		9D05C08719B0794C00864708 /* horn_lose_02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = horn_lose_02.mp3; sourceTree = "<group>"; };
+		9D05C08819B0794C00864708 /* success_playful_08.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = success_playful_08.mp3; sourceTree = "<group>"; };
 		9D3A42BE19ADB2BA0024FB5D /* SXGameMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameMenuScene.h; sourceTree = "<group>"; };
 		9D3A42BF19ADB2BA0024FB5D /* SXGameMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGameMenuScene.m; sourceTree = "<group>"; };
 		9D3A42C119ADB9F50024FB5D /* SXGameResultScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGameResultScene.h; sourceTree = "<group>"; };
@@ -243,6 +247,8 @@
 		509F584719ADAD92001C0D8F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9D05C08719B0794C00864708 /* horn_lose_02.mp3 */,
+				9D05C08819B0794C00864708 /* success_playful_08.mp3 */,
 				9DBAACF019B06EB100718A72 /* launch.png */,
 				9DBAACF119B06EB100718A72 /* launchiPad.png */,
 				9DBAACF219B06EB100718A72 /* launchR4.png */,
@@ -379,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D05C08919B0794C00864708 /* horn_lose_02.mp3 in Resources */,
 				9DBAACF419B06EB100718A72 /* launchiPad.png in Resources */,
 				509F584B19ADAD92001C0D8F /* InfoPlist.strings in Resources */,
 				50FF4A6F19B05FEC003BC1B8 /* Icon-60@2x.png in Resources */,
@@ -387,6 +394,7 @@
 				9DBAACF319B06EB100718A72 /* launch.png in Resources */,
 				9DFD07A019B02817009E35A4 /* pop2b.mp3 in Resources */,
 				509F585419ADAD92001C0D8F /* Main.storyboard in Resources */,
+				9D05C08A19B0794C00864708 /* success_playful_08.mp3 in Resources */,
 				500E1ADF19ADD082000541CC /* buttonclick.mp3 in Resources */,
 				50FF4A7019B05FEC003BC1B8 /* Icon-76.png in Resources */,
 				50FF4A7419B05FEC003BC1B8 /* Icon-Small.png in Resources */,

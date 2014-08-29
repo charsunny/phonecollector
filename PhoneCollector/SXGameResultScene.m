@@ -114,6 +114,11 @@
         GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:@"best_score"];
         scoreReporter.value = _score;
         [GKScore reportScores:@[scoreReporter] withCompletionHandler:nil];
+        [_resultNode runAction:[SKAction playSoundFileNamed:@"success_playful_08.mp3" waitForCompletion:NO] completion:nil];
+    }
+    else
+    {
+        [_resultNode runAction:[SKAction playSoundFileNamed:@"horn_lose_02.mp3" waitForCompletion:NO] completion:nil];
     }
     [_resultNode setText:[NSString stringWithFormat:@"%ld",(long)_score]];
     [_bestNode setText:[NSString stringWithFormat:@"Best %ld", (long)self.bestScore]];
