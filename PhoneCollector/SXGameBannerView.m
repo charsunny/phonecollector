@@ -65,9 +65,6 @@
 }
 
 - (BOOL)isUnlockRemoveAds {
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"removeAds"]) {
-        [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"removeAds"];
-    }
     return [[[NSUserDefaults standardUserDefaults] objectForKey:@"removeAds"] boolValue];
 }
 

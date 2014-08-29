@@ -76,11 +76,12 @@
         shareNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/6);
         [self addChild:shareNode];
         
-        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RemoveAds"] size:CGSizeMake(170, 50)];
-        upgradeNode.name = @"upgrade";
-        upgradeNode.position = CGPointMake(self.size.width/2, 10);
-        [self addChild:upgradeNode];
-        
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"removeAds"] boolValue]) {
+            SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RemoveAds"] size:CGSizeMake(170, 50)];
+            upgradeNode.name = @"upgrade";
+            upgradeNode.position = CGPointMake(self.size.width/2, 10);
+            [self addChild:upgradeNode];
+        }
     }
     return self;
 }
@@ -154,7 +155,7 @@
         } else {
             UIActivityViewController *activityController =
             [[UIActivityViewController alloc]
-             initWithActivityItems:@[[NSString stringWithFormat:@"I have just got %ld in game iPicker, challenge me right now!", self.score], [NSURL URLWithString:@"https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8"]]
+             initWithActivityItems:@[[NSString stringWithFormat:@"I have just got %ld in game iPicker, challenge me right now!", (long)self.score], [NSURL URLWithString:@"https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8"]]
              applicationActivities:nil];
             activityController.excludedActivityTypes = @[UIActivityTypeAirDrop,
                                                      UIActivityTypeAddToReadingList,
@@ -221,11 +222,11 @@
                 [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
                 break;
             case SKPaymentTransactionStateFailed:
-                [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"removeAds"];
                 [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
                 [[[UIAlertView alloc] initWithTitle:@"Tip" message:@"Unlock Failed, please try again!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
                 break;
             case SKPaymentTransactionStateRestored:
+                [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:@"removeAds"];
                 [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
             default:
                 break;
@@ -249,8 +250,8 @@
 
 - (void) sendImageContentToCircle:(BOOL)circle {    //发送内容给微信
     WXMediaMessage *message = [WXMediaMessage message];
-    message.title = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone", _score];
-    message.description = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！", _score];
+    message.title = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone", (long)_score];
+    message.description = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！", (long)_score];
     WXAppExtendObject *ext = [WXAppExtendObject object];
     ext.extInfo = @"<xml>iPicker下载</xml>";
     ext.url = @"https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8";
@@ -274,7 +275,7 @@
 
 - (void)sendImageContentToWeibo {
     WBMessageObject* message = [[WBMessageObject alloc] init];
-    message.text = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8", _score];
+    message.text = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8", (long)_score];
     WBSendMessageToWeiboRequest* request = [WBSendMessageToWeiboRequest requestWithMessage:message];
     request.userInfo = @{@"ShareMessageFrom": @"SXViewController"};
     [WeiboSDK sendRequest:request];
