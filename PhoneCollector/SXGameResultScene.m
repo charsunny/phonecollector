@@ -74,12 +74,12 @@
         
         SKSpriteNode* leaderBoardNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"leaderboard"] size:CGSizeMake(40, 40)];
         leaderBoardNode.name = @"leaderboard";
-        leaderBoardNode.position = CGPointMake(self.size.width/2 - 60, self.size.height/2 - 150);
+        leaderBoardNode.position = CGPointMake(self.size.width/2, self.size.height/2 - 170);
         [self addChild:leaderBoardNode];
         
-        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Unlock"] size:CGSizeMake(40, 40)];
+        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RemoveAds"] size:CGSizeMake(170, 50)];
         upgradeNode.name = @"upgrade";
-        upgradeNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/2 - 150);
+        upgradeNode.position = CGPointMake(self.size.width/2, 10);
         [self addChild:upgradeNode];
         
     }
