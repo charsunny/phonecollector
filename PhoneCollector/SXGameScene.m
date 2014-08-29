@@ -41,6 +41,8 @@
 
 @property (nonatomic)BOOL gamePaused;
 
+@property (nonatomic) int colorScheme;
+
 @end
 
 @implementation SXGameScene
@@ -66,9 +68,8 @@
         _updateInterval = 0.5;
         self.score = 0;
         _firstNumber = 0;
-        
-        //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-        self.backgroundColor = UIColorFromRGB(0xFFAB21);
+        srand((unsigned int)time(NULL));
+        _colorScheme = rand()%2;
         
         [self initGameControlView];
         
@@ -88,16 +89,16 @@
     _surfaceNode.path = path;
     CGPathRelease(path);
     _surfaceNode.antialiased = NO;
-    _surfaceNode.lineWidth = 1.0;
-    _surfaceNode.strokeColor = UIColorFromRGB(0xFFC53F);
+    _surfaceNode.lineWidth = 0;
+    _surfaceNode.fillColor = UIColorFromRGB(0xFFC53F);
     _surfaceNode.name = @"surface";
     [self addChild:_surfaceNode];
     
-    SKSpriteNode* topSprite = [SKSpriteNode spriteNodeWithColor:UIColorFromRGB(0x4DC9FD) size:CGSizeMake(self.size.width, (self.size.height - 140)/2)];
+    SKSpriteNode* topSprite = [SKSpriteNode spriteNodeWithColor:UIColorFromRGB(_colorScheme?0x4DC9FD:0x333333) size:CGSizeMake(self.size.width, (self.size.height - 140)/2)];
     topSprite.position = CGPointMake(self.size.width/2, 3*self.size.height/4+35);
     [_surfaceNode addChild:topSprite];
     
-    SKSpriteNode* bottomSprite = [SKSpriteNode spriteNodeWithColor:UIColorFromRGB(0x00CE61) size:CGSizeMake(self.size.width, (self.size.height - 140)/2)];
+    SKSpriteNode* bottomSprite = [SKSpriteNode spriteNodeWithColor:UIColorFromRGB(_colorScheme?0x00CE61:0x333333) size:CGSizeMake(self.size.width, (self.size.height - 140)/2)];
     bottomSprite.position = CGPointMake(self.size.width/2, self.size.height/4 - 35);
     [_surfaceNode addChild:bottomSprite];
 
@@ -140,6 +141,7 @@
     UILabel* upGuideLabel = [UILabel new];
     [upGuideLabel setText:@"Swipe Up to Collect an iPhone 📱"];
     [upGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:14]];
+    [upGuideLabel setTextColor:_colorScheme?[UIColor darkTextColor]:[UIColor whiteColor]];
     [upGuideLabel sizeToFit];
     upGuideLabel.center = CGPointMake(160, 70);
     [bgView addSubview:upGuideLabel];
@@ -147,6 +149,7 @@
     UILabel* downGuideLabel = [UILabel new];
     [downGuideLabel setText:@"Swipe Down to Abandon Other Phones"];
     [downGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:14]];
+    [downGuideLabel setTextColor:_colorScheme?[UIColor darkTextColor]:[UIColor whiteColor]];
     [downGuideLabel sizeToFit];
     downGuideLabel.center = CGPointMake(160, 250);
     [bgView addSubview:downGuideLabel];
