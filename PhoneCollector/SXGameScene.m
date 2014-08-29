@@ -89,6 +89,15 @@
     _surfaceNode.name = @"surface";
     [self addChild:_surfaceNode];
     
+    SKSpriteNode* topSprite = [SKSpriteNode spriteNodeWithColor:[UIColor greenColor] size:CGSizeMake(self.size.width, (self.size.height - 140)/2)];
+    topSprite.position = CGPointMake(self.size.width/2, 3*self.size.height/4+35);
+    [_surfaceNode addChild:topSprite];
+    
+    SKSpriteNode* bottomSprite = [SKSpriteNode spriteNodeWithColor:[UIColor purpleColor] size:CGSizeMake(self.size.width, (self.size.height - 140)/2)];
+    bottomSprite.position = CGPointMake(self.size.width/2, self.size.height/4 - 35);
+    [_surfaceNode addChild:bottomSprite];
+
+    
     SKLabelNode* scoreLabel = [SKLabelNode node];
     [scoreLabel setText:[NSString stringWithFormat:@"%d", _score]];
     [scoreLabel setName:@"score"];
@@ -312,7 +321,8 @@
 #pragma mark -- pasueview delegate -- 
 
 - (void)handleRestart:(UIButton*)button {
-    [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
+    [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition flipVerticalWithDuration:0.3f]];
+    [_pauseView removeFromSuperview];
 }
 
 - (void)handleResume:(UIButton*)button {

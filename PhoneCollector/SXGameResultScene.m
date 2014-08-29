@@ -12,6 +12,7 @@
 #import "SXGameBannerView.h"
 #import "WXApi.h"
 #import "WeiboSDK.h"
+@import Social;
 @import GameKit;
 @import StoreKit;
 
@@ -144,7 +145,25 @@
     if ([_selectNode.name isEqualToString:@"home"]) {
         [self.view presentScene:[SXGameMenuScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
     } else if ([_selectNode.name isEqualToString:@"share"]) {
-        [[[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信好友",@"微信朋友圈",@"新浪微博",nil] showInView:self.view];
+       
+        NSString *countryCode = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
+        NSLog(@"%@",countryCode);
+        if ([countryCode isEqualToString:@"CN"] || [[countryCode uppercaseString] isEqualToString:@"ZH_CN"]) {
+            [[[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信好友",@"微信朋友圈",@"新浪微博",nil] showInView:self.view];
+        } else {
+            UIActivityViewController *activityController =
+            [[UIActivityViewController alloc]
+             initWithActivityItems:@[[NSString stringWithFormat:@"I have just got %ld in game iPicker, challenge me right now!", self.score], [NSURL URLWithString:@"https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8"]]
+             applicationActivities:nil];
+            activityController.excludedActivityTypes = @[UIActivityTypeAirDrop,
+                                                     UIActivityTypeAddToReadingList,
+                                                     UIActivityTypePrint,
+                                                     UIActivityTypeSaveToCameraRoll];
+            UIViewController* currectVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+            [currectVC presentViewController:activityController
+                               animated:YES completion:nil];
+        }
+        
     } else if ([_selectNode.name isEqualToString:@"restart"]) {
         [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
     } else if([_selectNode.name isEqualToString:@"leaderboard"])
@@ -229,13 +248,11 @@
 
 - (void) sendImageContentToCircle:(BOOL)circle {    //发送内容给微信
     WXMediaMessage *message = [WXMediaMessage message];
-    message.title = @"好玩的2048游戏";
-    message.description = @"过来跟我一起玩吧！";
-    [message setThumbImage:[UIImage imageNamed:@"AppIcon"]];
-    
+    message.title = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone", _score];
+    message.description = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！", _score];
     WXAppExtendObject *ext = [WXAppExtendObject object];
-    ext.extInfo = @"<xml>test</xml>";
-    ext.url = @"http://www.baidu.com";
+    ext.extInfo = @"<xml>iPicker下载</xml>";
+    ext.url = @"https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8";
     
     Byte* pBuffer = (Byte *)malloc(1024 * 100);
     memset(pBuffer, 0, 1024 * 100);
@@ -256,10 +273,7 @@
 
 - (void)sendImageContentToWeibo {
     WBMessageObject* message = [[WBMessageObject alloc] init];
-    message.text = @"好玩的2048游戏";
-    WBImageObject* imageObject = [[WBImageObject alloc] init];
-    imageObject.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"tt1" ofType:@"png"]];
-    message.imageObject = imageObject;
+    message.text = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8", _score];
     WBSendMessageToWeiboRequest* request = [WBSendMessageToWeiboRequest requestWithMessage:message];
     request.userInfo = @{@"ShareMessageFrom": @"SXViewController"};
     [WeiboSDK sendRequest:request];
