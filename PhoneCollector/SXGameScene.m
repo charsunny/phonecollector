@@ -213,6 +213,7 @@
             [self showGameResult];
         }
     }];
+    [moveNode runAction:[SKAction playSoundFileNamed:@"pop1a.mp3" waitForCompletion:NO] completion:nil];
     
 }
 
@@ -235,6 +236,7 @@
         SKAction* sequenceAction = [SKAction sequence:@[[SKAction scaleTo:1.2 duration:0.15],[SKAction scaleTo:1 duration:0.1]]];
         [[_surfaceNode childNodeWithName:@"dustbin"] runAction:sequenceAction];
     }];
+    [moveNode runAction:[SKAction playSoundFileNamed:@"pop2b.mp3" waitForCompletion:NO] completion:nil];
 }
 
 - (void)update:(NSTimeInterval)currentTime

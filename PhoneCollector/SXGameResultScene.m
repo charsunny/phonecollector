@@ -15,7 +15,7 @@
 @import GameKit;
 @import StoreKit;
 
-@interface SXGameResultScene()<GKGameCenterControllerDelegate,SKProductsRequestDelegate,UIActionSheetDelegate>
+@interface SXGameResultScene()<GKGameCenterControllerDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver,UIActionSheetDelegate>
 
 @property (assign, nonatomic) NSInteger bestScore;
 
@@ -98,7 +98,8 @@
 - (void)initBannerView
 {
     SXGameBannerView* bannerView = [SXGameBannerView getInstance];
-    //[bannerView preLoadAds];
+    CGRect f = self.frame;
+    bannerView.frame = CGRectMake( (f.size.width - bannerView.frame.size.width) / 2, ( f.size.height - bannerView.frame.size.height) /2, bannerView.frame.size.width, bannerView.frame.size.height);
     [self.view addSubview:bannerView];
     [bannerView presentBannerView];
 
@@ -187,9 +188,32 @@
     }
     alertView.tag = 100;
     [alertView show];
-    
-
 }
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    for(SKPaymentTransaction * transaction in transactions)
+    {
+        switch(transaction.transactionState)
+        {
+            case SKPaymentTransactionStatePurchased:
+                [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:@"removeAds"];
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+                break;
+            case SKPaymentTransactionStateFailed:
+                [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"removeAds"];
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+                [[[UIAlertView alloc] initWithTitle:@"Tip" message:@"Unlock Failed, please try again!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                break;
+            case SKPaymentTransactionStateRestored:
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+            default:
+                break;
+        }
+    }
+}
+
+
 
 #pragma mark -- share delegate 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

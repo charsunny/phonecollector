@@ -9,14 +9,19 @@
 #import "SXGameBannerView.h"
 #import "GADBannerView.h"
 #import <SystemConfiguration/SystemConfiguration.h>
-#import "Reachability.h"
 #import <QuartzCore/QuartzCore.h>
 
 
 #define UNIT_ID @"ca-app-pub-4119830468405392/4271828063"
+
+@interface SXGameBannerView()<GADBannerViewDelegate>
+
+@end
+
 @implementation SXGameBannerView
 {
     GADBannerView* bannerView;
+    BOOL isReceived;
 }
 
 + (instancetype)getInstance {
@@ -41,12 +46,16 @@
 
 -(void)presentBannerView
 {
+    if ([self isUnlockRemoveAds]) {
+        return;
+    }
+    
     UIButton* closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(285, 15, 30, 30)];
     [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(closeAds:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:closeBtn];
     
-    if ([self currentNetworkStatus] && arc4random() % 10 < 8) {
+    if (isReceived && arc4random() % 10 < 8) {
         [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             self.transform = CGAffineTransformMakeScale(1, 1);
             self.alpha = 1;
@@ -55,11 +64,11 @@
     }
 }
 
-- (BOOL)currentNetworkStatus
-{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return networkStatus != NotReachable;
+- (BOOL)isUnlockRemoveAds {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"removeAds"]) {
+        [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"removeAds"];
+    }
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"removeAds"] boolValue];
 }
 
 -(void)preLoadAds
@@ -72,18 +81,23 @@
     bannerView.layer.borderColor = [UIColor whiteColor].CGColor;
     bannerView.layer.cornerRadius = 10;
     bannerView.layer.borderWidth = 3.5f;
+    bannerView.delegate = self;
     [bannerView loadRequest:[GADRequest request]];
 }
 
 -(void)closeAds:(UIButton*)button
 {
-    //[bannerView removeFromSuperview];
     [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.transform = CGAffineTransformMakeScale(0.01, 0.01);
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+}
+
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    isReceived = YES;
 }
 
 @end
