@@ -67,17 +67,17 @@
         restartNode.position = CGPointMake(self.size.width/2, self.size.height/2 - 110);
         [self addChild:restartNode];
         
-        SKSpriteNode* shareNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Share"] size:CGSizeMake(30, 40)];
+        SKSpriteNode* shareNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Share"] size:CGSizeMake(40, 40)];
         shareNode.name = @"share";
         shareNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/2 - 110);
         [self addChild:shareNode];
         
-        SKSpriteNode* leaderBoardNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Share"] size:CGSizeMake(30, 40)];
+        SKSpriteNode* leaderBoardNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"leaderboard"] size:CGSizeMake(40, 40)];
         leaderBoardNode.name = @"leaderboard";
         leaderBoardNode.position = CGPointMake(self.size.width/2 - 60, self.size.height/2 - 150);
         [self addChild:leaderBoardNode];
         
-        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Share"] size:CGSizeMake(30, 40)];
+        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Unlock"] size:CGSizeMake(40, 40)];
         upgradeNode.name = @"upgrade";
         upgradeNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/2 - 150);
         [self addChild:upgradeNode];

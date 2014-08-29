@@ -50,7 +50,7 @@
         return;
     }
     
-    UIButton* closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(285, 15, 30, 30)];
+    UIButton* closeBtn = [[UIButton alloc]initWithFrame:CGRectMake(280, 31, 20, 20)];
     [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(closeAds:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:closeBtn];
@@ -80,7 +80,7 @@
     [self addSubview:bannerView];
     bannerView.layer.borderColor = [UIColor whiteColor].CGColor;
     bannerView.layer.cornerRadius = 10;
-    bannerView.layer.borderWidth = 3.5f;
+    bannerView.layer.borderWidth = 0.5f;
     bannerView.delegate = self;
     [bannerView loadRequest:[GADRequest request]];
 }

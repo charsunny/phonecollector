@@ -33,7 +33,7 @@
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         
-        self.backgroundColor = UIColorFromRGB(0x7ED321);
+        self.backgroundColor = UIColorFromRGB(0x333333);
         
         SKLabelNode* gameName = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
         
