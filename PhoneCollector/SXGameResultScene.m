@@ -63,14 +63,9 @@
         _bestNode.position  = CGPointMake(self.size.width/2, self.size.height/2 - 80);
         [self addChild:_bestNode];
         
-        SKSpriteNode* homeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Home"] size:CGSizeMake(40, 40)];
-        homeNode.name = @"home";
-        homeNode.position = CGPointMake(self.size.width/2 - 60, self.size.height/6);
-        [self addChild:homeNode];
-        
         SKSpriteNode* leaderBoardNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"leaderboard"] size:CGSizeMake(40, 40)];
         leaderBoardNode.name = @"leaderboard";
-        leaderBoardNode.position = CGPointMake(self.size.width/2, self.size.height/6);
+        leaderBoardNode.position = CGPointMake(self.size.width/2 - 60, self.size.height/6);
         [self addChild:leaderBoardNode];
         
         SKSpriteNode* shareNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Share"] size:CGSizeMake(40, 40)];
@@ -148,9 +143,7 @@
     if (![_selectNode containsPoint:pt]) {
         return;
     }
-    if ([_selectNode.name isEqualToString:@"home"]) {
-        [self.view presentScene:[SXGameMenuScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
-    } else if ([_selectNode.name isEqualToString:@"share"]) {
+    if ([_selectNode.name isEqualToString:@"share"]) {
        
         NSString *countryCode = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
         NSLog(@"%@",countryCode);
