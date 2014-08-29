@@ -49,6 +49,8 @@
         [self addChild:_titleNode];
         
         _resultNode = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
+        //_resultNode.fontColor = UIColorFromRGB(0x00CE61);
+        _resultNode.fontColor = UIColorFromRGB(0xFFDF32);
         _resultNode.position = CGPointMake(self.size.width/2, self.size.height/2+ 80);
         _resultNode.fontSize = 30;
         [self addChild:_resultNode];
@@ -61,6 +63,7 @@
         _bestNode = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
         _bestNode.fontSize = 30;
         _bestNode.position  = CGPointMake(self.size.width/2, self.size.height/2 - 80);
+        _bestNode.fontColor = UIColorFromRGB(0xFFDF32);
         [self addChild:_bestNode];
         
         SKSpriteNode* leaderBoardNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"leaderboard"] size:CGSizeMake(40, 40)];
