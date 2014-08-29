@@ -43,7 +43,7 @@
         }
         
         _titleNode = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
-        [_titleNode setText:@"Game Over"];
+        [_titleNode setText:NSLocalizedString(@"Game Over", @"xx")];
         _titleNode.fontSize = 40;
         _titleNode.position = CGPointMake(self.size.width/2, self.size.height*5/6 );
         [self addChild:_titleNode];
@@ -109,7 +109,7 @@
 - (void)didMoveToView:(SKView *)view
 {
     if (self.score > self.bestScore) {
-        [_titleNode setText:@"New Record!"];
+        [_titleNode setText:NSLocalizedString(@"New Record!",@"xx")];
         self.bestScore = self.score;
         GKScore *scoreReporter = [[GKScore alloc] initWithLeaderboardIdentifier:@"best_score"];
         scoreReporter.value = _score;
@@ -120,8 +120,8 @@
     {
         [_resultNode runAction:[SKAction playSoundFileNamed:@"horn_lose_02.mp3" waitForCompletion:NO] completion:nil];
     }
-    [_resultNode setText:[NSString stringWithFormat:@"Score %ld",(long)_score]];
-    [_bestNode setText:[NSString stringWithFormat:@"Best %ld", (long)self.bestScore]];
+    [_resultNode setText:[NSString stringWithFormat:@"%@ %ld",NSLocalizedString(@"Score",@"xx"),(long)_score]];
+    [_bestNode setText:[NSString stringWithFormat:@"%@ %ld", NSLocalizedString(@"Best", @"xxx"), (long)self.bestScore]];
     [self initBannerView];
 }
 
@@ -219,6 +219,7 @@
         {
             case SKPaymentTransactionStatePurchased:
                 [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:@"removeAds"];
+                [[self childNodeWithName:@"upgrade"] removeFromParent];
                 [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
                 break;
             case SKPaymentTransactionStateFailed:
@@ -227,6 +228,7 @@
                 break;
             case SKPaymentTransactionStateRestored:
                 [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:@"removeAds"];
+                [[self childNodeWithName:@"upgrade"] removeFromParent];
                 [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
             default:
                 break;
