@@ -14,8 +14,6 @@
 
 - (void)handleResume:(UIButton*)button;
 
-- (void)handleHome:(UIButton*)button;
-
 @end
 
 @interface SXGamePauseView : UIView

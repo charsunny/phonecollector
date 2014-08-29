@@ -149,7 +149,6 @@
     if ([_selectNode.name isEqualToString:@"share"]) {
        
         NSString *countryCode = [[NSLocale currentLocale] objectForKey: NSLocaleCountryCode];
-        NSLog(@"%@",countryCode);
         if ([countryCode isEqualToString:@"CN"] || [[countryCode uppercaseString] isEqualToString:@"ZH_CN"]) {
             [[[UIActionSheet alloc] initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信好友",@"微信朋友圈",@"新浪微博",nil] showInView:self.view];
         } else {
@@ -167,7 +166,7 @@
         }
         
     } else if ([_selectNode.name isEqualToString:@"restart"]) {
-        [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition doorsOpenVerticalWithDuration:0.3f]];
+        [self.view presentScene:[SXGameScene sceneWithSize:self.size] transition:[SKTransition flipVerticalWithDuration:0.3f]];
     } else if([_selectNode.name isEqualToString:@"leaderboard"])
     {
         GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];

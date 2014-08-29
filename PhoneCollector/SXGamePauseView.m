@@ -35,6 +35,7 @@
     button.imageView.clipsToBounds = NO;
     [self addSubview:button];
 }
+
 - (void)initUI
 {
     CGSize fs = self.frame.size;
@@ -50,10 +51,6 @@
     [resumeBtn setTitle:@"Resume" forState:UIControlStateNormal];
     [self configureButton:resumeBtn];
     
-    //home
-    UIButton* homeBtn = [[UIButton alloc]initWithFrame:CGRectMake(resumeBtn.frame.origin.x +  BTN_WIDTH + padding, fs.height / 2, BTN_WIDTH, BTN_WIDTH)];
-    [homeBtn setTitle:@"Home" forState:UIControlStateNormal];
-    [self configureButton:homeBtn];
     
     //UIView* spLineUp = [UIView alloc]initWithFrame:CGRectMake(, , , )
     //UIView* spLineBottom = [UIView alloc]initWithFrame:CGRectMake(, , , )
@@ -74,10 +71,4 @@
     }
 }
 
-- (void)handleHome:(UIButton*)button
-{
-    if ([self.delegate respondsToSelector:@selector(handleHome:)]) {
-        [self.delegate handleHome:button];
-    }
-}
 @end

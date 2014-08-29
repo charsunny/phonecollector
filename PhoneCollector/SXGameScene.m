@@ -145,16 +145,16 @@
     bgView.backgroundColor = [UIColor clearColor];
     
     UILabel* upGuideLabel = [UILabel new];
-    [upGuideLabel setText:@"Swipe Up to Collect an iPhone 📱"];
-    [upGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:14]];
+    [upGuideLabel setText:@"Swipe Up to Collect an iPhone"];
+    [upGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:18]];
     [upGuideLabel setTextColor:_colorScheme?[UIColor darkTextColor]:[UIColor whiteColor]];
     [upGuideLabel sizeToFit];
     upGuideLabel.center = CGPointMake(160, 70);
     [bgView addSubview:upGuideLabel];
     
     UILabel* downGuideLabel = [UILabel new];
-    [downGuideLabel setText:@"Swipe Down to Abandon Other Phones"];
-    [downGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:14]];
+    [downGuideLabel setText:@"Swipe Down to Throw other Phones"];
+    [downGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:18]];
     [downGuideLabel setTextColor:_colorScheme?[UIColor darkTextColor]:[UIColor whiteColor]];
     [downGuideLabel sizeToFit];
     downGuideLabel.center = CGPointMake(160, 250);
@@ -162,7 +162,7 @@
 
     UIButton* startButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [startButton setTitle:@"Tap to Begin" forState:UIControlStateNormal];
-    [startButton.titleLabel setFont:[UIFont fontWithName:GAME_FONT size:24]];
+    [startButton.titleLabel setFont:[UIFont fontWithName:GAME_FONT size:30]];
     [startButton sizeToFit];
     [startButton addTarget:self action:@selector(onStartGame:) forControlEvents:UIControlEventTouchUpInside];
     startButton.center = CGPointMake(160, 160);
@@ -272,12 +272,9 @@
         return;
     }
     _firstNumber++;
-    //NSLog(@"%d",_firstNumber);
     if ( _firstNumber  > 15)
     {
-        NSLog(@"inside");
         _firstNumber = 0;
-        
         SKSpriteNode* phoneNode = [self createPhoneNode:rand()%2];
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             [phoneNode setScale:0.5f];
@@ -356,16 +353,6 @@
     self.paused = _gamePaused;
     [_pauseView removeFromSuperview];
     
-}
-
-- (void)handleHome:(UIButton*)button {
-    [_pauseView removeFromSuperview];
-    SKTransition* transition = [SKTransition doorsCloseVerticalWithDuration:0.3];
-    
-    SKScene * scene = [SXGameMenuScene sceneWithSize:self.frame.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
-    [self.scene.view presentScene:scene transition:transition];
 }
 
 @end
