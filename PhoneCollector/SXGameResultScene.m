@@ -72,6 +72,11 @@
         leaderBoardNode.position = CGPointMake(self.size.width/2 - 60, self.size.height/6);
         [self addChild:leaderBoardNode];
         
+        SKSpriteNode* rateNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"star"] size:CGSizeMake(40, 40)];
+        rateNode.name = @"rate";
+        rateNode.position = CGPointMake(self.size.width/2, self.size.height/6);
+        [self addChild:rateNode];
+        
         SKSpriteNode* shareNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"Share"] size:CGSizeMake(40, 40)];
         shareNode.name = @"share";
         shareNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/6);
@@ -179,6 +184,8 @@
             gameCenterController.gameCenterDelegate = self;
             [[[[[UIApplication sharedApplication] delegate]window]rootViewController]presentViewController:gameCenterController animated:YES completion:nil];
         }
+    } else if([_selectNode.name isEqualToString:@"rate"]) {
+        
     } else if([_selectNode.name isEqualToString:@"upgrade"])
     {
         if([SKPaymentQueue canMakePayments])
