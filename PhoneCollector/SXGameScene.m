@@ -194,6 +194,7 @@
 
 - (void)onStartGame:(UIButton*)sender {
     [[_surfaceNode childNodeWithName:@"pauseNode"] setHidden:NO];
+    [_surfaceNode runAction:[SKAction playSoundFileNamed:@"buttonclick.mp3" waitForCompletion:NO]];
     [[sender superview] removeFromSuperview];
     _gamePaused = NO;
 }
