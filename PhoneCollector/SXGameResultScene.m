@@ -17,7 +17,7 @@
 @import GameKit;
 @import StoreKit;
 
-@interface SXGameResultScene()<GKGameCenterControllerDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver,UIActionSheetDelegate>
+@interface SXGameResultScene()<GKGameCenterControllerDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver,UIActionSheetDelegate,SKStoreProductViewControllerDelegate>
 
 @property (assign, nonatomic) NSInteger bestScore;
 
@@ -185,7 +185,16 @@
             [[[[[UIApplication sharedApplication] delegate]window]rootViewController]presentViewController:gameCenterController animated:YES completion:nil];
         }
     } else if([_selectNode.name isEqualToString:@"rate"]) {
-        
+        UIViewController* currectVC = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
+        storeProductViewContorller.delegate = self;
+        [currectVC presentViewController:storeProductViewContorller animated:YES completion:nil];
+        [storeProductViewContorller loadProductWithParameters:
+         @{SKStoreProductParameterITunesItemIdentifier : @"913420757"} completionBlock:^(BOOL result, NSError *error) {
+             if(error){
+                 [[[UIAlertView alloc] initWithTitle:@"Tips" message:@"cannot connect to iTunes Store" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+             }
+         }];
     } else if([_selectNode.name isEqualToString:@"upgrade"])
     {
         if([SKPaymentQueue canMakePayments])
@@ -265,7 +274,7 @@
     message.description = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！", (long)_score];
     WXAppExtendObject *ext = [WXAppExtendObject object];
     ext.extInfo = @"<xml>iPicker下载</xml>";
-    ext.url = @"https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8";
+    ext.url = @"https://itunes.apple.com/app/ipicker/id913420757?ls=1&mt=8";
     
     Byte* pBuffer = (Byte *)malloc(1024 * 100);
     memset(pBuffer, 0, 1024 * 100);
@@ -286,10 +295,14 @@
 
 - (void)sendImageContentToWeibo {
     WBMessageObject* message = [[WBMessageObject alloc] init];
-    message.text = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8", (long)_score];
+    message.text = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！https://itunes.apple.com/app/ipicker/id913420757?ls=1&mt=8", (long)_score];
     WBSendMessageToWeiboRequest* request = [WBSendMessageToWeiboRequest requestWithMessage:message];
     request.userInfo = @{@"ShareMessageFrom": @"SXViewController"};
     [WeiboSDK sendRequest:request];
+}
+
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
