@@ -83,10 +83,15 @@
         [self addChild:shareNode];
         
         if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"removeAds"] boolValue]) {
-            SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RemoveAds"] size:CGSizeMake(170, 50)];
+            SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RemoveAds"] size:CGSizeMake(118, 50)];
             upgradeNode.name = @"upgrade";
-            upgradeNode.position = CGPointMake(self.size.width/2, 10);
+            upgradeNode.position = CGPointMake(self.size.width/2 - 80, 2);
             [self addChild:upgradeNode];
+            
+            SKSpriteNode* restoreNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RestoreIAPs"] size:CGSizeMake(118, 50)];
+            restoreNode.name = @"restore";
+            restoreNode.position = CGPointMake(self.size.width/2 + 80, 2);
+            [self addChild:restoreNode];
         }
     }
     return self;
@@ -204,6 +209,11 @@
             [request start];
         }
     }
+    else if([_selectNode.name isEqualToString:@"restore"])
+    {
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+        [[SKPaymentQueue defaultQueue]restoreCompletedTransactions];
+    }
 }
 
 #pragma mark -- leaderboarddelegate --
@@ -238,6 +248,7 @@
             case SKPaymentTransactionStatePurchased:
                 [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:@"removeAds"];
                 [[self childNodeWithName:@"upgrade"] removeFromParent];
+                [[self childNodeWithName:@"restore"] removeFromParent];
                 [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
                 break;
             case SKPaymentTransactionStateFailed:
@@ -247,11 +258,23 @@
             case SKPaymentTransactionStateRestored:
                 [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:@"removeAds"];
                 [[self childNodeWithName:@"upgrade"] removeFromParent];
+                [[self childNodeWithName:@"restore"] removeFromParent];
                 [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
             default:
                 break;
         }
     }
+}
+
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:@"removeAds"];
+    [[[UIAlertView alloc] initWithTitle:@"Tip" message:@"Restore Completed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+    [[[UIAlertView alloc] initWithTitle:@"Tip" message:@"Restore Failed,Please Try Later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 
