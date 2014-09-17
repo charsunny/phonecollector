@@ -3,12 +3,16 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "android_small.png"
+      "filename" : "Artboard 1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "android_small-1.png"
+      "filename" : "Artboard 1-1.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
