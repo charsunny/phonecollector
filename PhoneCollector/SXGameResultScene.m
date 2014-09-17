@@ -82,17 +82,20 @@
         shareNode.position = CGPointMake(self.size.width/2 + 60, self.size.height/6);
         [self addChild:shareNode];
         
-        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"removeAds"] boolValue]) {
-            SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RemoveAds"] size:CGSizeMake(118, 50)];
-            upgradeNode.name = @"upgrade";
-            upgradeNode.position = CGPointMake(self.size.width/2 - 80, 2);
-            [self addChild:upgradeNode];
-            
-            SKSpriteNode* restoreNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RestoreIAPs"] size:CGSizeMake(118, 50)];
-            restoreNode.name = @"restore";
-            restoreNode.position = CGPointMake(self.size.width/2 + 80, 2);
-            [self addChild:restoreNode];
-        }
+        //comment for review
+//        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"removeAds"] boolValue]) {
+//        }
+        
+        //display the upgrade & purchase button
+        SKSpriteNode* upgradeNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RemoveAds"] size:CGSizeMake(118, 50)];
+        upgradeNode.name = @"upgrade";
+        upgradeNode.position = CGPointMake(self.size.width/2 - 80, 2);
+        [self addChild:upgradeNode];
+        
+        SKSpriteNode* restoreNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"RestoreIAPs"] size:CGSizeMake(118, 50)];
+        restoreNode.name = @"restore";
+        restoreNode.position = CGPointMake(self.size.width/2 + 80, 2);
+        [self addChild:restoreNode];
     }
     return self;
 }
