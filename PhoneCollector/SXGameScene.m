@@ -278,6 +278,7 @@
     {
         _firstNumber = 0;
         SKSpriteNode* phoneNode = [self createPhoneNode:rand()%2];
+        phoneNode.size = CGSizeMake(phoneNode.size.width * 2, phoneNode.size.height * 2);
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             [phoneNode setScale:0.5f];
         }
