@@ -91,7 +91,7 @@
     CGPathRelease(path);
     _surfaceNode.antialiased = NO;
     _surfaceNode.lineWidth = 0;
-    _surfaceNode.fillColor = UIColorFromRGB(0xFC913A);
+    _surfaceNode.fillColor = UIColorFromRGB(0xFF4E50);
     _surfaceNode.name = @"surface";
     [self addChild:_surfaceNode];
     
