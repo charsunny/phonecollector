@@ -46,6 +46,9 @@
         SKLabelNode* startLabel = [[SKLabelNode alloc] initWithFontNamed:GAME_FONT];
         [startLabel setText:@"Start"];
         [startLabel setFontSize:40];
+        SKAction* fadeAction = [SKAction fadeOutWithDuration:3.0];
+        SKAction* fadeIn = [SKAction fadeInWithDuration:3.0];
+        [startLabel runAction:fadeAction];
         startLabel.position = CGPointMake(size.width/2, size.height/2);
         [self addChild:startLabel];
         [startLabel setName:@"start"];

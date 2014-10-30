@@ -169,7 +169,7 @@
         } else {
             UIActivityViewController *activityController =
             [[UIActivityViewController alloc]
-             initWithActivityItems:@[[NSString stringWithFormat:@"I have just got %ld in game iPicker, challenge me right now!", (long)self.score], [NSURL URLWithString:@"https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8"]]
+             initWithActivityItems:@[[NSString stringWithFormat:@"I have just got %ld coins in game iPicker, challenge me right now!", (long)self.score], [NSURL URLWithString:@"https://itunes.apple.com/us/app/ipicker/id913420757?ls=1&mt=8"]]
              applicationActivities:nil];
             activityController.excludedActivityTypes = @[UIActivityTypeAirDrop,
                                                      UIActivityTypeAddToReadingList,
@@ -296,8 +296,8 @@
 
 - (void) sendImageContentToCircle:(BOOL)circle {    //发送内容给微信
     WXMediaMessage *message = [WXMediaMessage message];
-    message.title = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone", (long)_score];
-    message.description = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！", (long)_score];
+    message.title = [NSString stringWithFormat:@"我刚刚收集了%ld个金币", (long)_score];
+    message.description = [NSString stringWithFormat:@"我刚刚收集了%ld个金币，快来挑战我吧！", (long)_score];
     WXAppExtendObject *ext = [WXAppExtendObject object];
     ext.extInfo = @"<xml>iPicker下载</xml>";
     ext.url = @"https://itunes.apple.com/app/ipicker/id913420757?ls=1&mt=8";
@@ -321,7 +321,7 @@
 
 - (void)sendImageContentToWeibo {
     WBMessageObject* message = [[WBMessageObject alloc] init];
-    message.text = [NSString stringWithFormat:@"我刚刚收集了%ld个iPhone，快来挑战我吧！https://itunes.apple.com/app/ipicker/id913420757?ls=1&mt=8", (long)_score];
+    message.text = [NSString stringWithFormat:@"我刚刚收集了%ld个金币，快来挑战我吧！https://itunes.apple.com/app/ipicker/id913420757?ls=1&mt=8", (long)_score];
     WBSendMessageToWeiboRequest* request = [WBSendMessageToWeiboRequest requestWithMessage:message];
     request.userInfo = @{@"ShareMessageFrom": @"SXViewController"};
     [WeiboSDK sendRequest:request];

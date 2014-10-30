@@ -167,6 +167,11 @@
     [startButton sizeToFit];
     [startButton addTarget:self action:@selector(onStartGame:) forControlEvents:UIControlEventTouchUpInside];
     startButton.center = CGPointMake(160, 160);
+//    [UIView animateWithDuration:2.0 delay:0 options:UIViewAnimationOptionRepeat animations:^{
+//        startButton.alpha = 0.1;
+//    } completion:^(BOOL finished) {
+//        startButton.alpha = 1.0;
+//    }];
     [bgView addSubview:startButton];
     
     return bgView;
