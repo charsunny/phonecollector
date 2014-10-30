@@ -5,8 +5,8 @@
   Created by Sun Xi on 8/29/14.
   Copyright (c) 2014 Sun Xi. All rights reserved.
 */
-"Swipe Up to Collect an iPhone" = "向上滑动收集iPhone";
-"Swipe Down to Throw other Phones" = "向下滑动丢掉其他手机";
+"Swipe Up to Collect Gold Coin" = "向上滑动收集金币";
+"Swipe Down to Throw Pirate Flag" = "向下滑动丢掉海盗旗";
 "Tap to start" = "点击开始";
 "Game Over" = "游戏结束";
 "New Record!" = "新纪录!";
