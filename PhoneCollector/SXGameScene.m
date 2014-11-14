@@ -146,7 +146,7 @@
     bgView.backgroundColor = [UIColor clearColor];
     
     UILabel* upGuideLabel = [UILabel new];
-    [upGuideLabel setText:NSLocalizedString(@"Swipe Up to Collect an iPhone",@"xxx")];
+    [upGuideLabel setText:NSLocalizedString(@"Swipe Up to Collect a Coin",@"xxx")];
     [upGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:18]];
     [upGuideLabel setTextColor:_colorScheme?[UIColor darkTextColor]:[UIColor whiteColor]];
     [upGuideLabel sizeToFit];
@@ -154,7 +154,7 @@
     [bgView addSubview:upGuideLabel];
     
     UILabel* downGuideLabel = [UILabel new];
-    [downGuideLabel setText:NSLocalizedString(@"Swipe Down to Throw other Phones",@"xx")];
+    [downGuideLabel setText:NSLocalizedString(@"Swipe Down to Throw Skull",@"xx")];
     [downGuideLabel setFont:[UIFont fontWithName:GAME_FONT size:18]];
     [downGuideLabel setTextColor:_colorScheme?[UIColor darkTextColor]:[UIColor whiteColor]];
     [downGuideLabel sizeToFit];

@@ -385,7 +385,6 @@
 				ORGANIZATIONNAME = "Sun Xi";
 				TargetAttributes = {
 					509F583A19ADAD92001C0D8F = {
-						DevelopmentTeam = CX3SW7JBRE;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 1;
@@ -589,7 +588,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3c3edaa6-a58d-47a9-8aea-4884a4909a63";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -616,7 +615,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3c3edaa6-a58d-47a9-8aea-4884a4909a63";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
